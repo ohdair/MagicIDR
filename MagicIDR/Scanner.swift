@@ -64,26 +64,22 @@ class Scanner: NSObject {
         output.capturePhoto(with: settings, delegate: self)
 
         return await withCheckedContinuation { continuation in
-            request(complition: { result in
-                continuation.resume(returning: result)
-            })
+            scanSuccessBlock = { image in
+                continuation.resume(returning: image)
+            }
         }
-    }
-
-    private func request(complition: @escaping (UIImage?) -> Void) {
-        scanSuccessBlock = complition
     }
 }
 
 extension Scanner: AVCapturePhotoCaptureDelegate {
     func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
         stop()
-        
+
         if error != nil {
             scanSuccessBlock?(nil)
             return
         }
-        
+
         if let data = photo.fileDataRepresentation() {
             let image = UIImage(data: data)
             scanSuccessBlock?(image)
