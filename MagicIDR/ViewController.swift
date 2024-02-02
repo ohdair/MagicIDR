@@ -10,13 +10,7 @@ import AVFoundation
 
 class ViewController: UIViewController {
 
-    // MARK: - Property
-
-    var session: AVCaptureSession?
-    let output = AVCapturePhotoOutput()
-    let previewLayer = AVCaptureVideoPreviewLayer()
-
-    // MARK: - View
+    private let scannerView = ScannerView()
 
     private let sutterButton = {
         let button = UIButton(frame: CGRect(x: 0, y: 0, width: 80, height: 80))
@@ -42,14 +36,14 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        view.layer.addSublayer(previewLayer)
         view.addSubview(sutterButton)
         view.addSubview(saveButton)
         view.addSubview(savedCapturePhotoView)
+        view.addSubview(scannerView)
 
         setNavigationBar()
-
         checkCameraPermissions()
+
         sutterButton.addTarget(self, action: #selector(tappedTakePhoto), for: .touchUpInside)
     }
 
@@ -57,7 +51,7 @@ class ViewController: UIViewController {
         super.viewDidLayoutSubviews()
         let layerHeight = view.frame.width / 3 * 4
         let y = (view.frame.height - layerHeight) / 2
-        previewLayer.frame = CGRect(x: 0,
+        scannerView.frame = CGRect(x: 0,
                                     y: y,
                                     width: view.frame.width,
                                     height: layerHeight)
@@ -69,8 +63,6 @@ class ViewController: UIViewController {
         savedCapturePhotoView.center = CGPoint(x: 60,
                                     y: view.frame.height - 80)
     }
-
-    // MARK: - Method
 
     private func setNavigationBar() {
         self.navigationController?.navigationBar.backgroundColor = .black.withAlphaComponent(0.5)
@@ -88,7 +80,7 @@ class ViewController: UIViewController {
                 guard granted else { return }
                 
                 DispatchQueue.main.async {
-                    self?.setupCamera()
+                    self?.scannerView.startScanning()
                 }
             }
         case .restricted:
@@ -96,55 +88,20 @@ class ViewController: UIViewController {
         case .denied:
             break
         case .authorized:
-            setupCamera()
+            scannerView.startScanning()
         @unknown default:
             break
         }
     }
 
-    private func setupCamera() {
-        let session = AVCaptureSession()
-        if let device = AVCaptureDevice.default(for: .video) {
-            do {
-                let input = try AVCaptureDeviceInput(device: device)
-                if session.canAddInput(input) {
-                    session.addInput(input)
-                }
+    @objc private func tappedTakePhoto() {
+        Task {
+            if let result = await scannerView.scan() {
+                let VC = RepointViewController()
+                VC.image = result
 
-                if session.canAddOutput(output) {
-                    session.addOutput(output)
-                }
-
-                previewLayer.videoGravity = .resizeAspectFill
-                previewLayer.session = session
-
-                self.session = session
-
-                DispatchQueue.global(qos: .background).async {
-                    self.session?.startRunning()
-                }
-            } catch {
-                print(error)
+                self.navigationController?.pushViewController(VC, animated: true)
             }
         }
-    }
-
-    @objc private func tappedTakePhoto() {
-        output.capturePhoto(with: AVCapturePhotoSettings(),
-                            delegate: self)
-    }
-}
-
-extension ViewController: AVCapturePhotoCaptureDelegate {
-    func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
-        guard let data = photo.fileDataRepresentation() else { return }
-        let image = UIImage(data: data)
-
-        session?.stopRunning()
-
-        let imageView = UIImageView(image: image)
-        imageView.contentMode = .scaleAspectFill
-        imageView.frame = view.bounds
-        view.addSubview(imageView)
     }
 }

@@ -12,6 +12,9 @@
 		F61BFD392B6BA27A0052D077 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F61BFD382B6BA27A0052D077 /* ViewController.swift */; };
 		F61BFD3E2B6BA27C0052D077 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F61BFD3D2B6BA27C0052D077 /* Assets.xcassets */; };
 		F61BFD412B6BA27C0052D077 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F61BFD3F2B6BA27C0052D077 /* LaunchScreen.storyboard */; };
+		F61BFD492B6CC8230052D077 /* RepointViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F61BFD482B6CC8230052D077 /* RepointViewController.swift */; };
+		F61BFD4B2B6CE2BD0052D077 /* Scanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = F61BFD4A2B6CE2BD0052D077 /* Scanner.swift */; };
+		F61BFD4D2B6CEAEB0052D077 /* ScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F61BFD4C2B6CEAEB0052D077 /* ScannerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +25,9 @@
 		F61BFD3D2B6BA27C0052D077 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F61BFD402B6BA27C0052D077 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F61BFD422B6BA27C0052D077 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F61BFD482B6CC8230052D077 /* RepointViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepointViewController.swift; sourceTree = "<group>"; };
+		F61BFD4A2B6CE2BD0052D077 /* Scanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scanner.swift; sourceTree = "<group>"; };
+		F61BFD4C2B6CEAEB0052D077 /* ScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +63,9 @@
 				F61BFD342B6BA27A0052D077 /* AppDelegate.swift */,
 				F61BFD362B6BA27A0052D077 /* SceneDelegate.swift */,
 				F61BFD382B6BA27A0052D077 /* ViewController.swift */,
+				F61BFD482B6CC8230052D077 /* RepointViewController.swift */,
+				F61BFD4A2B6CE2BD0052D077 /* Scanner.swift */,
+				F61BFD4C2B6CEAEB0052D077 /* ScannerView.swift */,
 				F61BFD3D2B6BA27C0052D077 /* Assets.xcassets */,
 				F61BFD3F2B6BA27C0052D077 /* LaunchScreen.storyboard */,
 				F61BFD422B6BA27C0052D077 /* Info.plist */,
@@ -136,6 +145,9 @@
 			files = (
 				F61BFD392B6BA27A0052D077 /* ViewController.swift in Sources */,
 				F61BFD352B6BA27A0052D077 /* AppDelegate.swift in Sources */,
+				F61BFD492B6CC8230052D077 /* RepointViewController.swift in Sources */,
+				F61BFD4D2B6CEAEB0052D077 /* ScannerView.swift in Sources */,
+				F61BFD4B2B6CE2BD0052D077 /* Scanner.swift in Sources */,
 				F61BFD372B6BA27A0052D077 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
