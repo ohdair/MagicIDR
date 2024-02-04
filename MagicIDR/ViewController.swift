@@ -98,7 +98,7 @@ class ViewController: UIViewController {
         Task {
             if let result = await scannerView.scan() {
                 let VC = RepointViewController()
-                VC.image = result
+                VC.ciImage = result
 
                 self.navigationController?.pushViewController(VC, animated: true)
             }

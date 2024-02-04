@@ -6,7 +6,7 @@
 //
 
 import AVFoundation
-import UIKit
+import CoreImage
 
 class Scanner: NSObject {
 
@@ -21,7 +21,7 @@ class Scanner: NSObject {
         return layer
     }()
 
-    private var scanSuccessBlock: ((UIImage?) -> Void)?
+    private var scanSuccessBlock: ((CIImage?) -> Void)?
 
     override init() {
         super.init()
@@ -59,7 +59,7 @@ class Scanner: NSObject {
         }
     }
 
-    func scan() async -> UIImage? {
+    func scan() async -> CIImage? {
         let settings = AVCapturePhotoSettings()
         output.capturePhoto(with: settings, delegate: self)
 
@@ -81,7 +81,7 @@ extension Scanner: AVCapturePhotoCaptureDelegate {
         }
 
         if let data = photo.fileDataRepresentation() {
-            let image = UIImage(data: data)
+            let image = CIImage(data: data)
             scanSuccessBlock?(image)
         }
     }

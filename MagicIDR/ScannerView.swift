@@ -33,7 +33,7 @@ class ScannerView: UIView {
         scanner.stop()
     }
 
-    func scan() async -> UIImage? {
+    func scan() async -> CIImage? {
         await scanner.scan()
     }
 }

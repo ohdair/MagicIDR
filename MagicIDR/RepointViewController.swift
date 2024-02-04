@@ -9,7 +9,7 @@ import UIKit
 
 class RepointViewController: UIViewController {
 
-    var image: UIImage!
+    var ciImage: CIImage!
 
     private let imageView = {
         let imageView = UIImageView()
@@ -31,7 +31,7 @@ class RepointViewController: UIViewController {
 
     private func setUI() {
         view.backgroundColor = .systemPink
-        imageView.image = image
+        imageView.image = UIImage(ciImage: ciImage)
         view.addSubview(imageView)
     }
 
