@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		F61BFD352B6BA27A0052D077 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F61BFD342B6BA27A0052D077 /* AppDelegate.swift */; };
 		F61BFD372B6BA27A0052D077 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F61BFD362B6BA27A0052D077 /* SceneDelegate.swift */; };
-		F61BFD392B6BA27A0052D077 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F61BFD382B6BA27A0052D077 /* ViewController.swift */; };
+		F61BFD392B6BA27A0052D077 /* ShootingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F61BFD382B6BA27A0052D077 /* ShootingViewController.swift */; };
 		F61BFD3E2B6BA27C0052D077 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F61BFD3D2B6BA27C0052D077 /* Assets.xcassets */; };
 		F61BFD412B6BA27C0052D077 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F61BFD3F2B6BA27C0052D077 /* LaunchScreen.storyboard */; };
 		F61BFD492B6CC8230052D077 /* RepointViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F61BFD482B6CC8230052D077 /* RepointViewController.swift */; };
@@ -19,14 +19,15 @@
 		F6F48C2A2B707FD400D0ABB5 /* RectangleFeatureAdjustmetor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F48C292B707FD400D0ABB5 /* RectangleFeatureAdjustmetor.swift */; };
 		F6F48C2F2B7099F500D0ABB5 /* RectangleDetectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F48C2E2B7099F500D0ABB5 /* RectangleDetectable.swift */; };
 		F6F48C312B70B5E800D0ABB5 /* DetectedRectangleLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F48C302B70B5E800D0ABB5 /* DetectedRectangleLayer.swift */; };
-		F6F48C332B70D7D400D0ABB5 /* ThumbnailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F48C322B70D7D400D0ABB5 /* ThumbnailView.swift */; };
+		F6F48C332B70D7D400D0ABB5 /* ThumbnailButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F48C322B70D7D400D0ABB5 /* ThumbnailButton.swift */; };
+		F6F48C352B70E2CD00D0ABB5 /* PerspectiveCorrection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F48C342B70E2CD00D0ABB5 /* PerspectiveCorrection.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		F61BFD312B6BA27A0052D077 /* MagicIDR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MagicIDR.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F61BFD342B6BA27A0052D077 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F61BFD362B6BA27A0052D077 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		F61BFD382B6BA27A0052D077 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		F61BFD382B6BA27A0052D077 /* ShootingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShootingViewController.swift; sourceTree = "<group>"; };
 		F61BFD3D2B6BA27C0052D077 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F61BFD402B6BA27C0052D077 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F61BFD422B6BA27C0052D077 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -37,7 +38,8 @@
 		F6F48C292B707FD400D0ABB5 /* RectangleFeatureAdjustmetor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RectangleFeatureAdjustmetor.swift; sourceTree = "<group>"; };
 		F6F48C2E2B7099F500D0ABB5 /* RectangleDetectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RectangleDetectable.swift; sourceTree = "<group>"; };
 		F6F48C302B70B5E800D0ABB5 /* DetectedRectangleLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetectedRectangleLayer.swift; sourceTree = "<group>"; };
-		F6F48C322B70D7D400D0ABB5 /* ThumbnailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThumbnailView.swift; sourceTree = "<group>"; };
+		F6F48C322B70D7D400D0ABB5 /* ThumbnailButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThumbnailButton.swift; sourceTree = "<group>"; };
+		F6F48C342B70E2CD00D0ABB5 /* PerspectiveCorrection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerspectiveCorrection.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,11 +74,12 @@
 			children = (
 				F61BFD342B6BA27A0052D077 /* AppDelegate.swift */,
 				F61BFD362B6BA27A0052D077 /* SceneDelegate.swift */,
-				F61BFD382B6BA27A0052D077 /* ViewController.swift */,
-				F6F48C322B70D7D400D0ABB5 /* ThumbnailView.swift */,
+				F61BFD382B6BA27A0052D077 /* ShootingViewController.swift */,
+				F6F48C322B70D7D400D0ABB5 /* ThumbnailButton.swift */,
 				F61BFD482B6CC8230052D077 /* RepointViewController.swift */,
 				F6F48C292B707FD400D0ABB5 /* RectangleFeatureAdjustmetor.swift */,
 				F68508F12B6F8A7600332DBA /* RectangleView.swift */,
+				F6F48C342B70E2CD00D0ABB5 /* PerspectiveCorrection.swift */,
 				F61BFD4A2B6CE2BD0052D077 /* Scanner.swift */,
 				F61BFD4C2B6CEAEB0052D077 /* ScannerView.swift */,
 				F6F48C302B70B5E800D0ABB5 /* DetectedRectangleLayer.swift */,
@@ -158,7 +161,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F61BFD392B6BA27A0052D077 /* ViewController.swift in Sources */,
+				F6F48C352B70E2CD00D0ABB5 /* PerspectiveCorrection.swift in Sources */,
+				F61BFD392B6BA27A0052D077 /* ShootingViewController.swift in Sources */,
 				F6F48C2A2B707FD400D0ABB5 /* RectangleFeatureAdjustmetor.swift in Sources */,
 				F68508F22B6F8A7600332DBA /* RectangleView.swift in Sources */,
 				F61BFD352B6BA27A0052D077 /* AppDelegate.swift in Sources */,
@@ -167,7 +171,7 @@
 				F61BFD492B6CC8230052D077 /* RepointViewController.swift in Sources */,
 				F61BFD4D2B6CEAEB0052D077 /* ScannerView.swift in Sources */,
 				F61BFD4B2B6CE2BD0052D077 /* Scanner.swift in Sources */,
-				F6F48C332B70D7D400D0ABB5 /* ThumbnailView.swift in Sources */,
+				F6F48C332B70D7D400D0ABB5 /* ThumbnailButton.swift in Sources */,
 				F61BFD372B6BA27A0052D077 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
