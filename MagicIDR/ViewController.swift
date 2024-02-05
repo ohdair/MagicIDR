@@ -27,18 +27,14 @@ class ViewController: UIViewController {
         return button
     }()
 
-    private let savedCapturePhotoView = {
-        let view = UIView(frame: CGRect(x: 0, y: 0, width: 80, height: 80))
-        view.backgroundColor = .sub
-        return view
-    }()
+    private let thumbnailView = ThumbnailView(frame: CGRect(x: 0, y: 0, width: 80, height: 80))
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         view.addSubview(sutterButton)
         view.addSubview(saveButton)
-        view.addSubview(savedCapturePhotoView)
+        view.addSubview(thumbnailView)
         view.addSubview(scannerView)
 
         setNavigationBar()
@@ -60,7 +56,7 @@ class ViewController: UIViewController {
                                       y: view.frame.height - 80)
         saveButton.center = CGPoint(x: view.frame.width - 60,
                                     y: view.frame.height - 80)
-        savedCapturePhotoView.center = CGPoint(x: 60,
+        thumbnailView.center = CGPoint(x: 60,
                                     y: view.frame.height - 80)
     }
 
