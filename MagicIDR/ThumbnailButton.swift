@@ -1,5 +1,5 @@
 //
-//  ThumbnailView.swift
+//  ThumbnailButton.swift
 //  MagicIDR
 //
 //  Created by 박재우 on 2/5/24.
@@ -32,6 +32,10 @@ class ThumbnailButton: UIButton {
             thumbnailImageView.image = images.last
         }
     }
+
+    lazy var top = {
+        images.last
+    }()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -69,8 +73,13 @@ class ThumbnailButton: UIButton {
         ])
     }
 
+    func push(_ cgImage: CGImage) {
+        let image = UIImage(cgImage: cgImage, scale: 1, orientation: .right)
+        images.append(image)
+    }
+
     func push(_ ciImage: CIImage) {
-        let image = UIImage(ciImage: ciImage)
+        let image = UIImage(ciImage: ciImage, scale: 1, orientation: .right)
         images.append(image)
     }
 
