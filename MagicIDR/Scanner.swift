@@ -8,18 +8,25 @@
 import AVFoundation
 import CoreImage
 
+protocol ScannerDelegate: AnyObject {
+    func scanner(_ scan: Scanner, capturedVideo: CIImage)
+}
+
 class Scanner: NSObject {
 
     private let session = AVCaptureSession()
     private let device = AVCaptureDevice.default(for: .video)
     private var input: AVCaptureDeviceInput?
-    private let output = AVCapturePhotoOutput()
+    private let photoOutput = AVCapturePhotoOutput()
+    private let videoOutput = AVCaptureVideoDataOutput()
 
     lazy var cameraLayer: AVCaptureVideoPreviewLayer = {
         let layer = AVCaptureVideoPreviewLayer(session: session)
         layer.videoGravity = .resizeAspectFill
         return layer
     }()
+
+    weak var snannerDelegate: ScannerDelegate?
 
     private var scanSuccessBlock: ((CIImage?) -> Void)?
 
@@ -36,12 +43,19 @@ class Scanner: NSObject {
 
         guard let input else { return }
 
+        session.sessionPreset = .photo
+
         if session.canAddInput(input) {
             session.addInput(input)
         }
 
-        if session.canAddOutput(output) {
-            session.addOutput(output)
+        if session.canAddOutput(photoOutput) {
+            session.addOutput(photoOutput)
+        }
+
+        if session.canAddOutput(videoOutput) {
+            videoOutput.setSampleBufferDelegate(self, queue: DispatchQueue(label: "videoQueue"))
+            session.addOutput(videoOutput)
         }
     }
 
@@ -61,13 +75,22 @@ class Scanner: NSObject {
 
     func scan() async -> CIImage? {
         let settings = AVCapturePhotoSettings()
-        output.capturePhoto(with: settings, delegate: self)
+        photoOutput.capturePhoto(with: settings, delegate: self)
 
         return await withCheckedContinuation { continuation in
             scanSuccessBlock = { image in
                 continuation.resume(returning: image)
             }
         }
+    }
+}
+
+extension Scanner: AVCaptureVideoDataOutputSampleBufferDelegate {
+    func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
+        guard let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else { return }
+        let ciImage = CIImage(cvPixelBuffer: pixelBuffer)
+
+        snannerDelegate?.scanner(self, capturedVideo: ciImage)
     }
 }
 
