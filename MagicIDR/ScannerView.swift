@@ -13,7 +13,7 @@ class ScannerView: UIView {
 
     private var detectedRectangleLayer = CAShapeLayer() {
         didSet {
-            detectedRectangleLayer.removeFromSuperlayer()
+            oldValue.removeFromSuperlayer()
             layer.addSublayer(detectedRectangleLayer)
         }
     }
