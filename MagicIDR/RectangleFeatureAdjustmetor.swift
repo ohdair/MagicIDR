@@ -26,7 +26,6 @@ class RectangleFeatureAdjustmetor: NSObject {
             let centerY = (topY + bottomY) / 2
             return CGPoint(x: centerX, y: centerY)
         }
-
     }
 
     init(_ rectangleFeature: CIRectangleFeature) {
@@ -72,32 +71,32 @@ class RectangleFeatureAdjustmetor: NSObject {
     private func correctOriginPoints() {
         let deltaCenter = self.centerPoint.reverse().substracting(self.centerPoint)
 
-        let TL = topLeft.adding(deltaCenter)
-        let TR = topRight.adding(deltaCenter)
-        let BL = bottomLeft.adding(deltaCenter)
-        let BR = bottomRight.adding(deltaCenter)
+        let newTopLeft = bottomLeft.adding(deltaCenter)
+        let newTopRight = topLeft.adding(deltaCenter)
+        let newBottomLeft = bottomRight.adding(deltaCenter)
+        let newBottomRight = topRight.adding(deltaCenter)
 
-        topLeft = BL
-        topRight = TL
-        bottomLeft = BR
-        bottomRight = TR
+        topLeft = newTopLeft
+        topRight = newTopRight
+        bottomLeft = newBottomLeft
+        bottomRight = newBottomRight
     }
 }
 
 fileprivate extension CGPoint {
+    func adding(_ addPoint: CGPoint) -> CGPoint {
+        return CGPoint(x: self.x + addPoint.x, y: self.y + addPoint.y)
+    }
+    
+    func substracting(_ subPoint: CGPoint) -> CGPoint {
+        return CGPoint(x: self.x - subPoint.x, y: self.y - subPoint.y)
+    }
+
     func scale(with scale: CGFloat) -> CGPoint {
         return CGPoint(x: self.x/scale, y: self.y/scale)
     }
 
     func reverse() -> CGPoint {
         return CGPoint(x: self.y, y: self.x)
-    }
-
-    func adding(_ addPoint: CGPoint) -> CGPoint {
-        return CGPoint(x: self.x + addPoint.x, y: self.y + addPoint.y)
-    }
-
-    func substracting(_ subPoint: CGPoint) -> CGPoint {
-        return CGPoint(x: self.x - subPoint.x, y: self.y - subPoint.y)
     }
 }
