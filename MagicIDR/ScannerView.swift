@@ -50,9 +50,12 @@ class ScannerView: UIView {
 extension ScannerView: ScannerDelegate, RectangleDetectable {
     func scanner(_ scan: Scanner, capturedVideo: CIImage) {
         DispatchQueue.main.async {
-            guard let rectangleFeature = self.detectRectangle(in: capturedVideo) else { return }
-            let adjustmentRectangleFeature =  RectangleFeatureAdjustmetor(rectangleFeature)
+            guard let rectangleFeature = self.detectRectangle(in: capturedVideo) else {
+                self.detectedRectangleLayer.removeFromSuperlayer()
+                return
+            }
 
+            let adjustmentRectangleFeature =  RectangleFeatureAdjustmetor(rectangleFeature)
             let scale = capturedVideo.extent.height / self.bounds.width
             let newFeature = adjustmentRectangleFeature.adjustRectangle(with: scale)
 

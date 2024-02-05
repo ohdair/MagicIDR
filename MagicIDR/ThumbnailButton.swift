@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ThumbnailView: UIView {
+class ThumbnailButton: UIButton {
 
     private let countLabel = {
         let label = UILabel()
