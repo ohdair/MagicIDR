@@ -10,6 +10,12 @@ import AVFoundation
 
 class ShootingViewController: UIViewController {
 
+    private var images = ModifiedStack<UIImage>() {
+        didSet {
+            self.thumbnailButton.setThumbnail(image: images.top, savedImagesCount: images.count)
+        }
+    }
+
     private let scannerView = ScannerView()
 
     private let sutterButton = {
@@ -100,22 +106,25 @@ class ShootingViewController: UIViewController {
 
             scannerView.startScanning()
 
-            guard let perspectiveCorrection = PerspectiveCorrection(image: result).correct() else {
-                thumbnailButton.push(result)
-                return
+            var image: UIImage
+
+            if let perspectiveCorrection = PerspectiveCorrection(image: result).correct() {
+                image = UIImage(cgImage: perspectiveCorrection, scale: 1, orientation: .right)
+            } else {
+                image = UIImage(ciImage: result, scale: 1, orientation: .right)
             }
 
-            thumbnailButton.push(perspectiveCorrection)
+            images.push(image)
         }
     }
 
     @objc private func tappedThumbnail() {
-        guard let image = thumbnailButton.top else {
+        guard !images.isEmpty else {
             return
         }
 
-        let VC = RepointViewController()
-        VC.image = image
+        let VC = PreviewViewController()
+        VC.image = images.top
 
         self.navigationController?.pushViewController(VC, animated: true)
     }

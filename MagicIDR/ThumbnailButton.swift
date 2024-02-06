@@ -26,17 +26,6 @@ class ThumbnailButton: UIButton {
         return imageView
     }()
 
-    private var images = [UIImage]() {
-        didSet {
-            countLabel.text = "\(images.count)"
-            thumbnailImageView.image = images.last
-        }
-    }
-
-    lazy var top = {
-        images.last
-    }()
-
     override init(frame: CGRect) {
         super.init(frame: frame)
 
@@ -49,8 +38,7 @@ class ThumbnailButton: UIButton {
     }
 
     private func setUI() {
-        countLabel.text = "\(images.count)"
-        thumbnailImageView.image = images.last
+        countLabel.text = "0"
 
         addSubview(thumbnailImageView)
         addSubview(countLabel)
@@ -73,18 +61,8 @@ class ThumbnailButton: UIButton {
         ])
     }
 
-    func push(_ cgImage: CGImage) {
-        let image = UIImage(cgImage: cgImage, scale: 1, orientation: .right)
-        images.append(image)
-    }
-
-    func push(_ ciImage: CIImage) {
-        let image = UIImage(ciImage: ciImage, scale: 1, orientation: .right)
-        images.append(image)
-    }
-
-    @discardableResult
-    func pop() -> UIImage {
-        images.removeLast()
+    func setThumbnail(image: UIImage?, savedImagesCount count: Int) {
+        countLabel.text = "\(count)"
+        thumbnailImageView.image = image
     }
 }
