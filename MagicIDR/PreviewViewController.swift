@@ -67,6 +67,7 @@ class PreviewViewController: UIViewController {
         setNavigationBar()
 
         deleteButton.addTarget(self, action: #selector(deleteImage), for: .touchUpInside)
+        counterclockwiseButton.addTarget(self, action: #selector(rotatingImage), for: .touchUpInside)
     }
 
     private func setPageViewController() {
@@ -161,6 +162,26 @@ class PreviewViewController: UIViewController {
 
         setTitle(withIndex: currentIndex)
     }
+
+    @objc private func rotatingImage() {
+        guard let viewController =  self.pageViewController.viewControllers?.first,
+              let contentController = viewController as? ContentViewController,
+              let currentIndex = contentController.pageIndex else {
+            return
+        }
+
+        guard let originImage = images.element(at: currentIndex),
+              let rotatedImage = originImage.rotateCounterClockwise() else {
+            return
+        }
+
+        images.swap(rotatedImage, at: currentIndex)
+
+        let willAppearController = contentViewController(atIndex: currentIndex)!
+        pageViewController.setViewControllers([willAppearController],
+                                              direction: .forward,
+                                              animated: false)
+    }
 }
 
 extension PreviewViewController: UIPageViewControllerDataSource, UIPageViewControllerDelegate {
@@ -200,5 +221,34 @@ extension PreviewViewController: UIPageViewControllerDataSource, UIPageViewContr
            let index = (pageViewController.viewControllers?.first as? ContentViewController)?.pageIndex {
             self.setTitle(withIndex: index)
         }
+    }
+}
+
+fileprivate extension UIImage {
+    func rotateCounterClockwise() -> UIImage? {
+        guard let cgImage else {
+            return nil
+        }
+
+        var newOrientation: UIImage.Orientation?
+
+        switch self.imageOrientation {
+        case .up:
+            newOrientation = .left
+        case .down:
+            newOrientation = .right
+        case .left:
+            newOrientation = .down
+        case .right:
+            newOrientation = .up
+        default:
+            break
+        }
+
+        guard let newOrientation = newOrientation else {
+            return nil
+        }
+
+        return UIImage(cgImage: cgImage, scale: 1, orientation: newOrientation)
     }
 }

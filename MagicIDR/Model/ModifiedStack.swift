@@ -42,4 +42,8 @@ struct ModifiedStack<T> {
 
         return elements[index]
     }
+
+    mutating func swap(_ value: T, at index: Int) {
+        elements[index] = value
+    }
 }
