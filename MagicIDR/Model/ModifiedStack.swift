@@ -34,4 +34,12 @@ struct ModifiedStack<T> {
     mutating func remove(at index: Int) {
         elements.remove(at: index)
     }
+
+    func element(at index: Int) -> T? {
+        guard 0 <= index && index < count else {
+            return nil
+        }
+
+        return elements[index]
+    }
 }
