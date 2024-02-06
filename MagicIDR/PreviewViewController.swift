@@ -65,6 +65,8 @@ class PreviewViewController: UIViewController {
         setUI()
         setLayout()
         setNavigationBar()
+
+        deleteButton.addTarget(self, action: #selector(deleteImage), for: .touchUpInside)
     }
 
     private func setPageViewController() {
@@ -123,6 +125,41 @@ class PreviewViewController: UIViewController {
 
     @objc private func back() {
         self.navigationController?.popViewController(animated: false)
+    }
+
+    @objc private func deleteImage() {
+        // 현재 content의 pageIndex 탐색
+        guard let viewController =  self.pageViewController.viewControllers?.first,
+              let contentController = viewController as? ContentViewController,
+              let currentIndex = contentController.pageIndex else {
+            return
+        }
+
+        images.remove(at: currentIndex)
+
+        // 데이터가 없다면 촬영 모드로 돌아가기
+        guard !images.isEmpty else {
+            self.navigationController?.popViewController(animated: true)
+            return
+        }
+
+        // 삭제된 index가 마지막 번호였다면 index - 1로 .reverse 형태로 표현
+        guard currentIndex != images.count else {
+            let willAppearController = contentViewController(atIndex: currentIndex - 1)!
+            pageViewController.setViewControllers([willAppearController],
+                                                  direction: .reverse,
+                                                  animated: true)
+            setTitle(withIndex: currentIndex - 1)
+            return
+        }
+
+        // 위 조건을 제외한 모든 경우의 수는 삭제된 index의 데이터로 .forward 형태로 표현
+        let willAppearController = contentViewController(atIndex: currentIndex)!
+        pageViewController.setViewControllers([willAppearController],
+                                              direction: .forward,
+                                              animated: true)
+
+        setTitle(withIndex: currentIndex)
     }
 }
 
