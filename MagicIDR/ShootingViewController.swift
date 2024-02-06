@@ -124,7 +124,7 @@ class ShootingViewController: UIViewController {
         }
 
         let VC = PreviewViewController()
-        VC.image = images.top
+        VC.images = images
 
         self.navigationController?.pushViewController(VC, animated: true)
     }

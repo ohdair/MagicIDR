@@ -16,6 +16,7 @@
 		F61BFD4B2B6CE2BD0052D077 /* Scanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = F61BFD4A2B6CE2BD0052D077 /* Scanner.swift */; };
 		F61BFD4D2B6CEAEB0052D077 /* ScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F61BFD4C2B6CEAEB0052D077 /* ScannerView.swift */; };
 		F68508F22B6F8A7600332DBA /* RectangleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68508F12B6F8A7600332DBA /* RectangleView.swift */; };
+		F6DDEB2B2B720F0C0042074C /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6DDEB2A2B720F0C0042074C /* ContentViewController.swift */; };
 		F6F48C2A2B707FD400D0ABB5 /* RectangleFeatureAdjustmetor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F48C292B707FD400D0ABB5 /* RectangleFeatureAdjustmetor.swift */; };
 		F6F48C2F2B7099F500D0ABB5 /* RectangleDetectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F48C2E2B7099F500D0ABB5 /* RectangleDetectable.swift */; };
 		F6F48C332B70D7D400D0ABB5 /* ThumbnailButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F48C322B70D7D400D0ABB5 /* ThumbnailButton.swift */; };
@@ -36,6 +37,7 @@
 		F61BFD4A2B6CE2BD0052D077 /* Scanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scanner.swift; sourceTree = "<group>"; };
 		F61BFD4C2B6CEAEB0052D077 /* ScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerView.swift; sourceTree = "<group>"; };
 		F68508F12B6F8A7600332DBA /* RectangleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RectangleView.swift; sourceTree = "<group>"; };
+		F6DDEB2A2B720F0C0042074C /* ContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewController.swift; sourceTree = "<group>"; };
 		F6F48C292B707FD400D0ABB5 /* RectangleFeatureAdjustmetor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RectangleFeatureAdjustmetor.swift; sourceTree = "<group>"; };
 		F6F48C2E2B7099F500D0ABB5 /* RectangleDetectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RectangleDetectable.swift; sourceTree = "<group>"; };
 		F6F48C322B70D7D400D0ABB5 /* ThumbnailButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThumbnailButton.swift; sourceTree = "<group>"; };
@@ -81,6 +83,7 @@
 				F61BFD482B6CC8230052D077 /* RepointViewController.swift */,
 				F6F48C362B71005D00D0ABB5 /* PreviewViewController.swift */,
 				F61BFD382B6BA27A0052D077 /* ShootingViewController.swift */,
+				F6DDEB2A2B720F0C0042074C /* ContentViewController.swift */,
 				F68508F12B6F8A7600332DBA /* RectangleView.swift */,
 				F61BFD3D2B6BA27C0052D077 /* Assets.xcassets */,
 				F61BFD3F2B6BA27C0052D077 /* LaunchScreen.storyboard */,
@@ -102,10 +105,10 @@
 			isa = PBXGroup;
 			children = (
 				F6F48C382B71F81E00D0ABB5 /* ModifiedStack.swift */,
-				F61BFD4A2B6CE2BD0052D077 /* Scanner.swift */,
+				F6F48C342B70E2CD00D0ABB5 /* PerspectiveCorrection.swift */,
 				F6F48C2E2B7099F500D0ABB5 /* RectangleDetectable.swift */,
 				F6F48C292B707FD400D0ABB5 /* RectangleFeatureAdjustmetor.swift */,
-				F6F48C342B70E2CD00D0ABB5 /* PerspectiveCorrection.swift */,
+				F61BFD4A2B6CE2BD0052D077 /* Scanner.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -186,6 +189,7 @@
 				F6F48C2A2B707FD400D0ABB5 /* RectangleFeatureAdjustmetor.swift in Sources */,
 				F68508F22B6F8A7600332DBA /* RectangleView.swift in Sources */,
 				F61BFD352B6BA27A0052D077 /* AppDelegate.swift in Sources */,
+				F6DDEB2B2B720F0C0042074C /* ContentViewController.swift in Sources */,
 				F6F48C2F2B7099F500D0ABB5 /* RectangleDetectable.swift in Sources */,
 				F61BFD492B6CC8230052D077 /* RepointViewController.swift in Sources */,
 				F61BFD4D2B6CEAEB0052D077 /* ScannerView.swift in Sources */,
