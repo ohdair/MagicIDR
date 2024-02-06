@@ -23,6 +23,41 @@ class PreviewViewController: UIViewController {
         return buttonItem
     }()
 
+    private let deleteButton = {
+        let imageConfig = UIImage.SymbolConfiguration(pointSize: 17, weight: .bold)
+        let image = UIImage(systemName: "trash", withConfiguration: imageConfig)
+        var buttonConfig = UIButton.Configuration.plain()
+        buttonConfig.image = image
+        buttonConfig.baseForegroundColor = .main
+        return UIButton(configuration: buttonConfig)
+    }()
+
+    private let counterclockwiseButton = {
+        let button = UIButton()
+        button.setTitle("반시계", for: .normal)
+        button.setTitleColor(.black, for: .normal)
+        return button
+    }()
+
+    private let cropButton = {
+        let imageConfig = UIImage.SymbolConfiguration(pointSize: 17, weight: .bold)
+        let image = UIImage(systemName: "crop", withConfiguration: imageConfig)
+        var buttonConfig = UIButton.Configuration.plain()
+        buttonConfig.image = image
+        buttonConfig.baseForegroundColor = .main
+        return UIButton(configuration: buttonConfig)
+    }()
+
+    private lazy var abilitiesStackView = {
+        let stackView = UIStackView()
+        stackView.addArrangedSubview(deleteButton)
+        stackView.addArrangedSubview(counterclockwiseButton)
+        stackView.addArrangedSubview(cropButton)
+        stackView.distribution = .fillEqually
+        stackView.backgroundColor = .systemGray6
+        return stackView
+    }()
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -48,18 +83,25 @@ class PreviewViewController: UIViewController {
         view.backgroundColor = .white
         addChild(pageViewController)
         view.addSubview(pageViewController.view)
+        view.addSubview(abilitiesStackView)
 
         setTitle(withIndex: images.count - 1)
     }
 
     private func setLayout() {
         pageViewController.view.translatesAutoresizingMaskIntoConstraints = false
+        abilitiesStackView.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
             pageViewController.view.topAnchor.constraint(equalTo: view.topAnchor),
             pageViewController.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             pageViewController.view.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             pageViewController.view.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+
+            abilitiesStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            abilitiesStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            abilitiesStackView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            abilitiesStackView.heightAnchor.constraint(equalToConstant: 70)
         ])
     }
 
