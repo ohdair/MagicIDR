@@ -96,8 +96,6 @@ extension Scanner: AVCaptureVideoDataOutputSampleBufferDelegate {
 
 extension Scanner: AVCapturePhotoCaptureDelegate {
     func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
-        stop()
-
         if error != nil {
             scanSuccessBlock?(nil)
             return

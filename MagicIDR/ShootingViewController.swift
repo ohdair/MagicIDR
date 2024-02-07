@@ -104,8 +104,6 @@ class ShootingViewController: UIViewController {
                 return
             }
 
-            scannerView.startScanning()
-
             var image: UIImage
 
             if let perspectiveCorrection = PerspectiveCorrection(image: result).correct() {
