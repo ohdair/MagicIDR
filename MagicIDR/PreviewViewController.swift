@@ -54,7 +54,7 @@ class PreviewViewController: UIViewController {
         stackView.addArrangedSubview(counterclockwiseButton)
         stackView.addArrangedSubview(cropButton)
         stackView.distribution = .fillEqually
-        stackView.backgroundColor = .systemGray6
+        stackView.backgroundColor = .black.withAlphaComponent(0.1)
         return stackView
     }()
 
