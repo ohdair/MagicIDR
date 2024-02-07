@@ -226,10 +226,6 @@ extension PreviewViewController: UIPageViewControllerDataSource, UIPageViewContr
 
 fileprivate extension UIImage {
     func rotateCounterClockwise() -> UIImage? {
-        guard let cgImage else {
-            return nil
-        }
-
         var newOrientation: UIImage.Orientation?
 
         switch self.imageOrientation {
@@ -249,6 +245,12 @@ fileprivate extension UIImage {
             return nil
         }
 
-        return UIImage(cgImage: cgImage, scale: 1, orientation: newOrientation)
+        if let ciImage {
+            return UIImage(ciImage: ciImage, scale: 1, orientation: newOrientation)
+        } else if let cgImage {
+            return UIImage(cgImage: cgImage, scale: 1, orientation: newOrientation)
+        } else {
+            return nil
+        }
     }
 }
