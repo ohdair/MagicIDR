@@ -20,10 +20,24 @@ class PerspectiveCorrection: RectangleDetectable {
             return nil
         }
 
-        let topLeft = CIVector(cgPoint: rectangleFeature.topLeft)
-        let topRight = CIVector(cgPoint: rectangleFeature.topRight)
-        let bottomLeft = CIVector(cgPoint: rectangleFeature.bottomLeft)
-        let bottomRight = CIVector(cgPoint: rectangleFeature.bottomRight)
+        let feature = RectangleFeature(topLeft: rectangleFeature.topLeft,
+                                       topRight: rectangleFeature.topRight,
+                                       bottomLeft: rectangleFeature.bottomLeft,
+                                       bottomRight: rectangleFeature.bottomRight)
+        let correctionOutput = correctionImage(through: feature)
+        return convert(with: correctionOutput)
+    }
+
+    func correct(with feature: RectangleFeature) -> CGImage? {
+        let correctionOutput = correctionImage(through: feature)
+        return convert(with: correctionOutput)
+    }
+
+    private func correctionImage(through feature: RectangleFeature) -> CIImage? {
+        let topLeft = CIVector(cgPoint: feature.topLeft)
+        let topRight = CIVector(cgPoint: feature.topRight)
+        let bottomLeft = CIVector(cgPoint: feature.bottomLeft)
+        let bottomRight = CIVector(cgPoint: feature.bottomRight)
 
         guard let perspectiveFilter = CIFilter(name: "CIPerspectiveCorrection") else {
             return nil
@@ -37,12 +51,15 @@ class PerspectiveCorrection: RectangleDetectable {
             "inputBottomRight": bottomRight
         ])
 
-        guard let outputImage = perspectiveFilter.outputImage else {
+        return perspectiveFilter.outputImage
+    }
+
+    private func convert(with image: CIImage?) -> CGImage? {
+        guard let image else {
             return nil
         }
 
         let ciContext = CIContext(options: nil)
-
-        return ciContext.createCGImage(outputImage, from: outputImage.extent)
+        return ciContext.createCGImage(image, from: image.extent)
     }
 }

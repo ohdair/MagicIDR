@@ -7,9 +7,15 @@
 
 import UIKit
 
+protocol RepointViewControllerDelegate: NSObject {
+    func repointViewControllerWillDisappear(_ repointViewController: RepointViewController, image: CIImage?, rectangleFeature: RectangleFeature?)
+}
+
 class RepointViewController: UIViewController, RectangleDetectable {
 
     var ciImage: CIImage!
+
+    weak var delegate: RepointViewControllerDelegate?
 
     private let imageView = {
         let imageView = UIImageView()
@@ -61,6 +67,14 @@ class RepointViewController: UIViewController, RectangleDetectable {
         setLayout()
 
         detectRectangle()
+
+        backButton.addTarget(self, action: #selector(tappedBackButton), for: .touchUpInside)
+        completeButton.addTarget(self, action: #selector(tappedCompleteButton), for: .touchUpInside)
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: false)
     }
 
     private func setUI() {
@@ -94,7 +108,7 @@ class RepointViewController: UIViewController, RectangleDetectable {
         ])
     }
 
-    func detectRectangle() {
+    private func detectRectangle() {
         DispatchQueue.main.async { [self] in
             guard let rectangleFeature = detectRectangle(in: ciImage) else {
                 rectangleView.setFullCorner()
@@ -104,12 +118,19 @@ class RepointViewController: UIViewController, RectangleDetectable {
             let scale = ciImage.extent.height / rectangleView.bounds.width
             let adjustmentFeauture = RectangleFeatureAdjustmetor(rectangleFeature).adjustRectangle(with: scale)
 
-            let topLeft = adjustmentFeauture.topLeft
-            let topRight = adjustmentFeauture.topRight
-            let bottomLeft = adjustmentFeauture.bottomLeft
-            let bottomRight = adjustmentFeauture.bottomRight
-
-            rectangleView.setFeature(topLeft: topLeft, topRight: topRight, bottomLeft: bottomLeft, bottomRight: bottomRight)
+            rectangleView.setFeature(adjustmentFeauture)
         }
+    }
+
+    @objc private func tappedBackButton() {
+        delegate?.repointViewControllerWillDisappear(self, image: nil, rectangleFeature: nil)
+        self.navigationController?.popViewController(animated: true)
+    }
+
+    @objc private func tappedCompleteButton() {
+        let scale = rectangleView.bounds.width / ciImage.extent.height 
+        let feature = RectangleFeatureAdjustmetor(rectangleView.feature).adjustRectangle(with: scale)
+        delegate?.repointViewControllerWillDisappear(self, image: ciImage, rectangleFeature: feature)
+        self.navigationController?.popViewController(animated: true)
     }
 }

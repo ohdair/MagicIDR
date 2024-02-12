@@ -35,6 +35,12 @@ class ShootingViewController: UIViewController {
 
     private let thumbnailButton = ThumbnailButton(frame: CGRect(x: 0, y: 0, width: 80, height: 80))
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        setNavigationBar()
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -43,7 +49,6 @@ class ShootingViewController: UIViewController {
         view.addSubview(thumbnailButton)
         view.addSubview(scannerView)
 
-        setNavigationBar()
         checkCameraPermissions()
 
         sutterButton.addTarget(self, action: #selector(tappedTakePhoto), for: .touchUpInside)
@@ -119,20 +124,11 @@ class ShootingViewController: UIViewController {
 
             scannerView.stopScanning()
 
-//            var image: UIImage
-//
-//            if let perspectiveCorrection = PerspectiveCorrection(image: result).correct() {
-//                image = UIImage(cgImage: perspectiveCorrection, scale: 1, orientation: .right)
-//            } else {
-//                image = UIImage(ciImage: result, scale: 1, orientation: .right)
-//            }
-//
-//            images.push(image)
+            let repointViewController = RepointViewController()
+            repointViewController.ciImage = result
+            repointViewController.delegate = self
 
-            let VC = RepointViewController()
-            VC.ciImage = result
-
-            self.navigationController?.pushViewController(VC, animated: true)
+            self.navigationController?.pushViewController(repointViewController, animated: true)
         }
     }
 
@@ -141,9 +137,27 @@ class ShootingViewController: UIViewController {
             return
         }
 
-        let VC = PreviewViewController()
-        VC.images = images
+        let previewViewController = PreviewViewController()
+        previewViewController.images = images
 
-        self.navigationController?.pushViewController(VC, animated: true)
+        self.navigationController?.pushViewController(previewViewController, animated: true)
+    }
+}
+
+extension ShootingViewController: RepointViewControllerDelegate {
+    func repointViewControllerWillDisappear(_ repointViewController: RepointViewController, image: CIImage?, rectangleFeature: RectangleFeature?) {
+        scannerView.startScanning()
+
+        guard let image, let rectangleFeature else { return }
+
+        var newImage: UIImage
+
+        if let cgImage = PerspectiveCorrection(image: image).correct(with: rectangleFeature) {
+            newImage = UIImage(cgImage: cgImage, scale: 1, orientation: .left)
+        } else {
+            newImage = UIImage(ciImage: image, scale: 1, orientation: .left)
+        }
+
+        images.push(newImage)
     }
 }

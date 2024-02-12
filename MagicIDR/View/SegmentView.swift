@@ -8,7 +8,7 @@
 import UIKit
 
 protocol SegmentViewDelegate: NSObject {
-    func segmentViewDidChangePosition(segmentView: SegmentView, point: CGPoint)
+    func segmentViewDidChangePosition(_ segmentView: SegmentView, point: CGPoint)
 }
 
 class SegmentView: UIView {
@@ -108,7 +108,7 @@ class SegmentView: UIView {
         }
 
         center = CGPoint(x: center.x + deltaX, y: center.y + deltaY)
-        delegate?.segmentViewDidChangePosition(segmentView: self, point: point)
+        delegate?.segmentViewDidChangePosition(self, point: point)
     }
 
     private func outOfSuperview(through point: CGPoint) -> Bool {

@@ -35,17 +35,22 @@ class RectangleFeatureAdjustmetor: NSObject {
         bottomRight = rectangleFeature.bottomRight
     }
 
-    func adjustRectangle(with scale: CGFloat) -> (
-        topLeft: CGPoint,
-        topRight: CGPoint,
-        bottomLeft: CGPoint,
-        bottomRight: CGPoint
-    ) {
+    init(_ rectangleFeature: RectangleFeature) {
+        topLeft = rectangleFeature.topLeft
+        topRight = rectangleFeature.topRight
+        bottomLeft = rectangleFeature.bottomLeft
+        bottomRight = rectangleFeature.bottomRight
+    }
+
+    func adjustRectangle(with scale: CGFloat) -> RectangleFeature {
         scaleRect(with: scale)
         rotate90Degree()
         correctOriginPoints()
 
-        return (topLeft, topRight, bottomLeft, bottomRight)
+        return RectangleFeature(topLeft: topLeft,
+                                topRight: topRight,
+                                bottomLeft: bottomLeft,
+                                bottomRight: bottomRight)
     }
 
     private func rotate90Degree() {

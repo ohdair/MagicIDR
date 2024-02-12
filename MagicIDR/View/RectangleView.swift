@@ -9,6 +9,10 @@ import UIKit
 
 class RectangleView: UIView {
 
+    var feature: RectangleFeature {
+        RectangleFeature(topLeft: topLeftPoint, topRight: topRightPoint, bottomLeft: bottomLeftPoint, bottomRight: bottomRightPoint)
+    }
+
     private var topLeftPoint: CGPoint = .zero {
         didSet {
             topView.startPoint = topLeftPoint
@@ -102,16 +106,16 @@ class RectangleView: UIView {
         backgroundColor = .clear
     }
 
-    func setFeature(topLeft: CGPoint, topRight: CGPoint, bottomLeft: CGPoint, bottomRight: CGPoint) {
-        topLeftPoint = topLeft
-        topRightPoint = topRight
-        bottomLeftPoint = bottomLeft
-        bottomRightPoint = bottomRight
+    func setFeature(_ feature: RectangleFeature) {
+        topLeftPoint = feature.topLeft
+        topRightPoint = feature.topRight
+        bottomLeftPoint = feature.bottomLeft
+        bottomRightPoint = feature.bottomRight
 
-        detectedTopLeftPoint = topLeft
-        detectedTopRightPoint = topRight
-        detectedBottomLeftPoint = bottomLeft
-        detectedBottomRightPoint = bottomRight
+        detectedTopLeftPoint = feature.topLeft
+        detectedTopRightPoint = feature.topRight
+        detectedBottomLeftPoint = feature.bottomLeft
+        detectedBottomRightPoint = feature.bottomRight
 
         layoutSubviews()
     }
@@ -157,7 +161,7 @@ extension RectangleView: CornerViewDelegate, SegmentViewDelegate {
         setNeedsDisplay()
     }
 
-    func segmentViewDidChangePosition(segmentView: SegmentView, point: CGPoint) {
+    func segmentViewDidChangePosition(_ segmentView: SegmentView, point: CGPoint) {
         let centerPoint = segmentView.center.adding(point: point)
 
         switch segmentView.direction {
