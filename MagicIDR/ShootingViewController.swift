@@ -53,19 +53,6 @@ class ShootingViewController: UIViewController {
 
         sutterButton.addTarget(self, action: #selector(tappedTakePhoto), for: .touchUpInside)
         thumbnailButton.addTarget(self, action: #selector(tappedThumbnail), for: .touchUpInside)
-
-        images.push(UIImage(systemName: "sum")!)
-        images.push(UIImage(systemName: "percent")!)
-        images.push(UIImage(systemName: "function")!)
-        images.push(UIImage(systemName: "minus")!)
-        images.push(UIImage(systemName: "plus")!)
-        images.push(UIImage(systemName: "multiply")!)
-        images.push(UIImage(systemName: "divide")!)
-        images.push(UIImage(systemName: "sun.min.fill")!)
-        images.push(UIImage(systemName: "cloud.fill")!)
-        images.push(UIImage(systemName: "cloud.rain.fill")!)
-        images.push(UIImage(systemName: "cloud.snow.fill")!)
-
     }
 
     override func viewDidLayoutSubviews() {
@@ -117,6 +104,11 @@ class ShootingViewController: UIViewController {
 
     @objc private func tappedTakePhoto() {
         Task {
+            defer {
+                sutterButton.isEnabled = true
+            }
+
+            sutterButton.isEnabled = false
             guard let result = await scannerView.scan() else {
                 print("카메라 촬영에 실패하였습니다.")
                 return
