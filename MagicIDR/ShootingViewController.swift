@@ -48,6 +48,19 @@ class ShootingViewController: UIViewController {
 
         sutterButton.addTarget(self, action: #selector(tappedTakePhoto), for: .touchUpInside)
         thumbnailButton.addTarget(self, action: #selector(tappedThumbnail), for: .touchUpInside)
+
+        images.push(UIImage(systemName: "sum")!)
+        images.push(UIImage(systemName: "percent")!)
+        images.push(UIImage(systemName: "function")!)
+        images.push(UIImage(systemName: "minus")!)
+        images.push(UIImage(systemName: "plus")!)
+        images.push(UIImage(systemName: "multiply")!)
+        images.push(UIImage(systemName: "divide")!)
+        images.push(UIImage(systemName: "sun.min.fill")!)
+        images.push(UIImage(systemName: "cloud.fill")!)
+        images.push(UIImage(systemName: "cloud.rain.fill")!)
+        images.push(UIImage(systemName: "cloud.snow.fill")!)
+
     }
 
     override func viewDidLayoutSubviews() {
@@ -104,15 +117,22 @@ class ShootingViewController: UIViewController {
                 return
             }
 
-            var image: UIImage
+            scannerView.stopScanning()
 
-            if let perspectiveCorrection = PerspectiveCorrection(image: result).correct() {
-                image = UIImage(cgImage: perspectiveCorrection, scale: 1, orientation: .right)
-            } else {
-                image = UIImage(ciImage: result, scale: 1, orientation: .right)
-            }
+//            var image: UIImage
+//
+//            if let perspectiveCorrection = PerspectiveCorrection(image: result).correct() {
+//                image = UIImage(cgImage: perspectiveCorrection, scale: 1, orientation: .right)
+//            } else {
+//                image = UIImage(ciImage: result, scale: 1, orientation: .right)
+//            }
+//
+//            images.push(image)
 
-            images.push(image)
+            let VC = RepointViewController()
+            VC.ciImage = result
+
+            self.navigationController?.pushViewController(VC, animated: true)
         }
     }
 

@@ -17,6 +17,11 @@
 		F61BFD4D2B6CEAEB0052D077 /* ScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F61BFD4C2B6CEAEB0052D077 /* ScannerView.swift */; };
 		F68508F22B6F8A7600332DBA /* RectangleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68508F12B6F8A7600332DBA /* RectangleView.swift */; };
 		F6DDEB2B2B720F0C0042074C /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6DDEB2A2B720F0C0042074C /* ContentViewController.swift */; };
+		F6DDEB2D2B74D3C40042074C /* CornerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6DDEB2C2B74D3C40042074C /* CornerView.swift */; };
+		F6E4E18B2B78AABB00781184 /* SegmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E4E18A2B78AABB00781184 /* SegmentView.swift */; };
+		F6E4E18F2B78F92600781184 /* Graph.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E4E18E2B78F92600781184 /* Graph.swift */; };
+		F6E4E1952B79AB4000781184 /* CGPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E4E1942B79AB4000781184 /* CGPoint.swift */; };
+		F6E4E1982B79EB0200781184 /* DistanceMeasurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E4E1972B79EB0200781184 /* DistanceMeasurable.swift */; };
 		F6F48C2A2B707FD400D0ABB5 /* RectangleFeatureAdjustmetor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F48C292B707FD400D0ABB5 /* RectangleFeatureAdjustmetor.swift */; };
 		F6F48C2F2B7099F500D0ABB5 /* RectangleDetectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F48C2E2B7099F500D0ABB5 /* RectangleDetectable.swift */; };
 		F6F48C332B70D7D400D0ABB5 /* ThumbnailButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F48C322B70D7D400D0ABB5 /* ThumbnailButton.swift */; };
@@ -38,6 +43,11 @@
 		F61BFD4C2B6CEAEB0052D077 /* ScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerView.swift; sourceTree = "<group>"; };
 		F68508F12B6F8A7600332DBA /* RectangleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RectangleView.swift; sourceTree = "<group>"; };
 		F6DDEB2A2B720F0C0042074C /* ContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewController.swift; sourceTree = "<group>"; };
+		F6DDEB2C2B74D3C40042074C /* CornerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CornerView.swift; sourceTree = "<group>"; };
+		F6E4E18A2B78AABB00781184 /* SegmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentView.swift; sourceTree = "<group>"; };
+		F6E4E18E2B78F92600781184 /* Graph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Graph.swift; sourceTree = "<group>"; };
+		F6E4E1942B79AB4000781184 /* CGPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGPoint.swift; sourceTree = "<group>"; };
+		F6E4E1972B79EB0200781184 /* DistanceMeasurable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistanceMeasurable.swift; sourceTree = "<group>"; };
 		F6F48C292B707FD400D0ABB5 /* RectangleFeatureAdjustmetor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RectangleFeatureAdjustmetor.swift; sourceTree = "<group>"; };
 		F6F48C2E2B7099F500D0ABB5 /* RectangleDetectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RectangleDetectable.swift; sourceTree = "<group>"; };
 		F6F48C322B70D7D400D0ABB5 /* ThumbnailButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThumbnailButton.swift; sourceTree = "<group>"; };
@@ -78,13 +88,13 @@
 			children = (
 				F61BFD342B6BA27A0052D077 /* AppDelegate.swift */,
 				F61BFD362B6BA27A0052D077 /* SceneDelegate.swift */,
+				F6E4E1962B79AB4300781184 /* Extension */,
 				F6DDEB292B7202D80042074C /* Model */,
 				F6DDEB282B7202C70042074C /* View */,
 				F61BFD482B6CC8230052D077 /* RepointViewController.swift */,
 				F6F48C362B71005D00D0ABB5 /* PreviewViewController.swift */,
 				F61BFD382B6BA27A0052D077 /* ShootingViewController.swift */,
 				F6DDEB2A2B720F0C0042074C /* ContentViewController.swift */,
-				F68508F12B6F8A7600332DBA /* RectangleView.swift */,
 				F61BFD3D2B6BA27C0052D077 /* Assets.xcassets */,
 				F61BFD3F2B6BA27C0052D077 /* LaunchScreen.storyboard */,
 				F61BFD422B6BA27C0052D077 /* Info.plist */,
@@ -97,6 +107,9 @@
 			children = (
 				F61BFD4C2B6CEAEB0052D077 /* ScannerView.swift */,
 				F6F48C322B70D7D400D0ABB5 /* ThumbnailButton.swift */,
+				F68508F12B6F8A7600332DBA /* RectangleView.swift */,
+				F6DDEB2C2B74D3C40042074C /* CornerView.swift */,
+				F6E4E18A2B78AABB00781184 /* SegmentView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -109,8 +122,18 @@
 				F6F48C2E2B7099F500D0ABB5 /* RectangleDetectable.swift */,
 				F6F48C292B707FD400D0ABB5 /* RectangleFeatureAdjustmetor.swift */,
 				F61BFD4A2B6CE2BD0052D077 /* Scanner.swift */,
+				F6E4E18E2B78F92600781184 /* Graph.swift */,
+				F6E4E1972B79EB0200781184 /* DistanceMeasurable.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		F6E4E1962B79AB4300781184 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				F6E4E1942B79AB4000781184 /* CGPoint.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -186,13 +209,18 @@
 				F6F48C352B70E2CD00D0ABB5 /* PerspectiveCorrection.swift in Sources */,
 				F6F48C392B71F81E00D0ABB5 /* ModifiedStack.swift in Sources */,
 				F61BFD392B6BA27A0052D077 /* ShootingViewController.swift in Sources */,
+				F6E4E1982B79EB0200781184 /* DistanceMeasurable.swift in Sources */,
 				F6F48C2A2B707FD400D0ABB5 /* RectangleFeatureAdjustmetor.swift in Sources */,
 				F68508F22B6F8A7600332DBA /* RectangleView.swift in Sources */,
 				F61BFD352B6BA27A0052D077 /* AppDelegate.swift in Sources */,
+				F6E4E18F2B78F92600781184 /* Graph.swift in Sources */,
+				F6E4E1952B79AB4000781184 /* CGPoint.swift in Sources */,
 				F6DDEB2B2B720F0C0042074C /* ContentViewController.swift in Sources */,
 				F6F48C2F2B7099F500D0ABB5 /* RectangleDetectable.swift in Sources */,
 				F61BFD492B6CC8230052D077 /* RepointViewController.swift in Sources */,
 				F61BFD4D2B6CEAEB0052D077 /* ScannerView.swift in Sources */,
+				F6E4E18B2B78AABB00781184 /* SegmentView.swift in Sources */,
+				F6DDEB2D2B74D3C40042074C /* CornerView.swift in Sources */,
 				F61BFD4B2B6CE2BD0052D077 /* Scanner.swift in Sources */,
 				F6F48C332B70D7D400D0ABB5 /* ThumbnailButton.swift in Sources */,
 				F6F48C372B71005D00D0ABB5 /* PreviewViewController.swift in Sources */,

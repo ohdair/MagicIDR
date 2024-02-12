@@ -7,7 +7,7 @@
 
 import UIKit
 
-class RepointViewController: UIViewController {
+class RepointViewController: UIViewController, RectangleDetectable {
 
     var ciImage: CIImage!
 
@@ -47,6 +47,8 @@ class RepointViewController: UIViewController {
         return stackView
     }()
 
+    private var rectangleView = RectangleView()
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: false)
@@ -57,6 +59,8 @@ class RepointViewController: UIViewController {
 
         setUI()
         setLayout()
+
+        detectRectangle()
     }
 
     private func setUI() {
@@ -64,11 +68,13 @@ class RepointViewController: UIViewController {
         imageView.image = UIImage(ciImage: ciImage, scale: 1, orientation: .right)
         view.addSubview(imageView)
         view.addSubview(abilitiesStackView)
+        view.addSubview(rectangleView)
     }
 
     private func setLayout() {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         abilitiesStackView.translatesAutoresizingMaskIntoConstraints = false
+        rectangleView.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
             imageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -79,7 +85,31 @@ class RepointViewController: UIViewController {
             abilitiesStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             abilitiesStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             abilitiesStackView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            abilitiesStackView.heightAnchor.constraint(equalToConstant: 70)
+            abilitiesStackView.heightAnchor.constraint(equalToConstant: 70),
+
+            rectangleView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            rectangleView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            rectangleView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            rectangleView.heightAnchor.constraint(equalTo: rectangleView.widthAnchor, multiplier: 4/3),
         ])
+    }
+
+    func detectRectangle() {
+        DispatchQueue.main.async { [self] in
+            guard let rectangleFeature = detectRectangle(in: ciImage) else {
+                rectangleView.setFullCorner()
+                return
+            }
+
+            let scale = ciImage.extent.height / rectangleView.bounds.width
+            let adjustmentFeauture = RectangleFeatureAdjustmetor(rectangleFeature).adjustRectangle(with: scale)
+
+            let topLeft = adjustmentFeauture.topLeft
+            let topRight = adjustmentFeauture.topRight
+            let bottomLeft = adjustmentFeauture.bottomLeft
+            let bottomRight = adjustmentFeauture.bottomRight
+
+            rectangleView.setFeature(topLeft: topLeft, topRight: topRight, bottomLeft: bottomLeft, bottomRight: bottomRight)
+        }
     }
 }
