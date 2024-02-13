@@ -9,7 +9,7 @@ import UIKit
 
 class ToggleButton: UIButton {
 
-    private(set) var isOn: Bool = false
+    private(set) var isMenual: Bool = false
     private let checkView = UIView()
     private var constraint: NSLayoutConstraint!
     private let menualLabel = UILabel()
@@ -71,12 +71,12 @@ class ToggleButton: UIButton {
     }
 
     @objc private func toggle() {
-        isOn.toggle()
+        isMenual.toggle()
 
         UIView.animate(withDuration: 0.4) {
             self.constraint.isActive = false
 
-            if self.isOn {
+            if self.isMenual {
                 self.constraint = self.checkView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -5)
             } else {
                 self.constraint = self.checkView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 5)
@@ -87,7 +87,7 @@ class ToggleButton: UIButton {
         }
 
         UIView.transition(with: self, duration: 0.4, options: .transitionCrossDissolve) {
-            if self.isOn {
+            if self.isMenual {
                 self.automaticalLabel.textColor = .white.withAlphaComponent(0.4)
                 self.menualLabel.textColor = .white
             } else {

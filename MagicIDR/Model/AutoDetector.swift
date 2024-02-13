@@ -14,6 +14,13 @@ protocol AutoDectectorable {
 }
 
 class AutoDetector {
+
+    var isOn: Bool = true {
+        didSet {
+            resetTimer()
+        }
+    }
+
     private var isRectangleDetected: Bool = false
     private var timer: Timer?
     private var processing: CGFloat = 0
@@ -21,7 +28,7 @@ class AutoDetector {
     var delegate: AutoDectectorable?
 
     func detect(_ isDetected: Bool) {
-        if isDetected != isRectangleDetected {
+        if isOn, isDetected != isRectangleDetected {
             isRectangleDetected = isDetected
             if isRectangleDetected {
                 startTimer()

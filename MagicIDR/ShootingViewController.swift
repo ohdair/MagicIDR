@@ -21,6 +21,7 @@ class ShootingViewController: UIViewController {
     private let sutterButton = UIButton()
     private let saveButton = UIButton()
     private let thumbnailButton = ThumbnailButton()
+    private let toggleButton = ToggleButton()
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -39,6 +40,7 @@ class ShootingViewController: UIViewController {
 
         sutterButton.addTarget(self, action: #selector(tappedTakePhoto), for: .touchUpInside)
         thumbnailButton.addTarget(self, action: #selector(tappedThumbnail), for: .touchUpInside)
+        toggleButton.addTarget(self, action: #selector(tappedToggleButton), for: .touchUpInside)
     }
 
     private func setUI() {
@@ -90,7 +92,7 @@ class ShootingViewController: UIViewController {
         self.navigationController?.navigationBar.tintColor = .white
 
         self.navigationItem.leftBarButtonItem = .init(title: "취소")
-        self.navigationItem.rightBarButtonItem = .init(customView: ToggleButton())
+        self.navigationItem.rightBarButtonItem = .init(customView: toggleButton)
     }
 
     private func checkCameraPermissions() {
@@ -146,6 +148,14 @@ class ShootingViewController: UIViewController {
         previewViewController.images = images
 
         self.navigationController?.pushViewController(previewViewController, animated: true)
+    }
+
+    @objc private func tappedToggleButton(sender: ToggleButton) {
+        if sender.isMenual {
+            scannerView.autoDectector.isOn = false
+        } else {
+            scannerView.autoDectector.isOn = true
+        }
     }
 }
 
