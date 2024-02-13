@@ -39,14 +39,6 @@ class ShootingViewController: UIViewController {
 
         sutterButton.addTarget(self, action: #selector(tappedTakePhoto), for: .touchUpInside)
         thumbnailButton.addTarget(self, action: #selector(tappedThumbnail), for: .touchUpInside)
-
-        let button = ToggleButton()
-
-        view.addSubview(button)
-        button.translatesAutoresizingMaskIntoConstraints = false
-
-        button.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        button.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
     }
 
     private func setUI() {
@@ -98,7 +90,7 @@ class ShootingViewController: UIViewController {
         self.navigationController?.navigationBar.tintColor = .white
 
         self.navigationItem.leftBarButtonItem = .init(title: "취소")
-        self.navigationItem.rightBarButtonItem = .init(title: "자동/수동")
+        self.navigationItem.rightBarButtonItem = .init(customView: ToggleButton())
     }
 
     private func checkCameraPermissions() {
