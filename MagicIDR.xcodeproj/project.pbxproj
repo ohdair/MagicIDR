@@ -114,7 +114,6 @@
 				F68508F12B6F8A7600332DBA /* RectangleView.swift */,
 				F6DDEB2C2B74D3C40042074C /* CornerView.swift */,
 				F6E4E18A2B78AABB00781184 /* SegmentView.swift */,
-				F6E4E19B2B7B1C9F00781184 /* AutoDetector.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -130,6 +129,7 @@
 				F6E4E18E2B78F92600781184 /* Graph.swift */,
 				F6E4E1972B79EB0200781184 /* DistanceMeasurable.swift */,
 				F6E4E1992B7A13C500781184 /* RectangleFeature.swift */,
+				F6E4E19B2B7B1C9F00781184 /* AutoDetector.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
