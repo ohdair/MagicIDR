@@ -17,7 +17,6 @@ class ShootingViewController: UIViewController {
     }
 
     private let scannerView = ScannerView()
-
     private let sutterButton = UIButton()
     private let saveButton = UIButton()
     private let thumbnailButton = ThumbnailButton()
@@ -144,8 +143,11 @@ class ShootingViewController: UIViewController {
             return
         }
 
+        scannerView.stopScanning()
+
         let previewViewController = PreviewViewController()
         previewViewController.images = images
+        previewViewController.delegate = self
 
         self.navigationController?.pushViewController(previewViewController, animated: true)
     }
@@ -203,5 +205,12 @@ extension ShootingViewController: AutoDectectorable {
 
             images.push(image)
         }
+    }
+}
+
+extension ShootingViewController: PreviewViewControllerDelegate {
+    func previewViewControllerWillDisappear(_ previewViewController: PreviewViewController, images: ModifiedStack<UIImage>) {
+        scannerView.startScanning()
+        self.images = images
     }
 }

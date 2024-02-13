@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol AutoDectectorable {
+protocol AutoDectectorable: NSObject {
     func autoDectectorWillDetected(_ autoDetector: AutoDetector)
     func autoDectectorDidDetected(_ autoDetector: AutoDetector, processing: CGFloat)
     func autoDectectorCompleted(_ autoDetector: AutoDetector)
@@ -25,7 +25,7 @@ class AutoDetector {
     private var timer: Timer?
     private var processing: CGFloat = 0
 
-    var delegate: AutoDectectorable?
+    weak var delegate: AutoDectectorable?
 
     func detect(_ isDetected: Bool) {
         if isOn, isDetected != isRectangleDetected {

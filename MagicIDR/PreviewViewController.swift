@@ -7,9 +7,15 @@
 
 import UIKit
 
+protocol PreviewViewControllerDelegate: NSObject {
+    func previewViewControllerWillDisappear(_ previewViewController: PreviewViewController, images: ModifiedStack<UIImage>)
+}
+
 class PreviewViewController: UIViewController {
 
     var images = ModifiedStack<UIImage>()
+
+    weak var delegate: PreviewViewControllerDelegate?
 
     private var pageViewController = UIPageViewController(
         transitionStyle: .scroll,
@@ -125,6 +131,7 @@ class PreviewViewController: UIViewController {
     }
 
     @objc private func back() {
+        delegate?.previewViewControllerWillDisappear(self, images: images)
         self.navigationController?.popViewController(animated: false)
     }
 
@@ -140,7 +147,8 @@ class PreviewViewController: UIViewController {
 
         // 데이터가 없다면 촬영 모드로 돌아가기
         guard !images.isEmpty else {
-            self.navigationController?.popViewController(animated: true)
+            delegate?.previewViewControllerWillDisappear(self, images: images)
+            navigationController?.popViewController(animated: true)
             return
         }
 
