@@ -76,10 +76,10 @@ class RectangleFeatureAdjustmetor: NSObject {
     private func correctOriginPoints() {
         let deltaCenter = self.centerPoint.reverse().substracting(self.centerPoint)
 
-        let newTopLeft = bottomLeft.adding(deltaCenter)
-        let newTopRight = topLeft.adding(deltaCenter)
-        let newBottomLeft = bottomRight.adding(deltaCenter)
-        let newBottomRight = topRight.adding(deltaCenter)
+        let newTopLeft = bottomLeft.adding(point: deltaCenter)
+        let newTopRight = topLeft.adding(point: deltaCenter)
+        let newBottomLeft = bottomRight.adding(point: deltaCenter)
+        let newBottomRight = topRight.adding(point: deltaCenter)
 
         topLeft = newTopLeft
         topRight = newTopRight
@@ -89,10 +89,6 @@ class RectangleFeatureAdjustmetor: NSObject {
 }
 
 fileprivate extension CGPoint {
-    func adding(_ addPoint: CGPoint) -> CGPoint {
-        return CGPoint(x: self.x + addPoint.x, y: self.y + addPoint.y)
-    }
-    
     func substracting(_ subPoint: CGPoint) -> CGPoint {
         return CGPoint(x: self.x - subPoint.x, y: self.y - subPoint.y)
     }
