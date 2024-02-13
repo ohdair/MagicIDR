@@ -8,7 +8,8 @@
 import Foundation
 
 protocol AutoDectectorable {
-    func autoDectectorDidDeteced(_ autoDetector: AutoDetector, processing: CGFloat)
+    func autoDectectorWillDetected(_ autoDetector: AutoDetector)
+    func autoDectectorDidDetected(_ autoDetector: AutoDetector, processing: CGFloat)
     func autoDectectorCompleted(_ autoDetector: AutoDetector)
 }
 
@@ -44,7 +45,7 @@ class AutoDetector {
 
     @objc private func fireTimer() {
         processing += 0.2
-        delegate?.autoDectectorDidDeteced(self, processing: processing)
+        delegate?.autoDectectorDidDetected(self, processing: processing)
 
         if processing >= 1.0 {
             delegate?.autoDectectorCompleted(self)

@@ -22,7 +22,7 @@ class ThumbnailButton: UIButton {
 
     private let thumbnailImageView = {
         let imageView = UIImageView()
-        imageView.backgroundColor = UIColor.main
+        imageView.backgroundColor = .main.withAlphaComponent(0.5)
         return imageView
     }()
 

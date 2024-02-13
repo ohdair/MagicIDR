@@ -18,22 +18,9 @@ class ShootingViewController: UIViewController {
 
     private let scannerView = ScannerView()
 
-    private let sutterButton = {
-        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 80, height: 80))
-        button.layer.cornerRadius = 40
-        button.layer.borderWidth = 20
-        button.layer.borderColor = UIColor.main.cgColor
-        return button
-    }()
-
-    private let saveButton = {
-        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 80, height: 80))
-        button.setTitle("저장", for: .normal)
-        button.setTitleColor(.black, for: .normal)
-        return button
-    }()
-
-    private let thumbnailButton = ThumbnailButton(frame: CGRect(x: 0, y: 0, width: 80, height: 80))
+    private let sutterButton = UIButton()
+    private let saveButton = UIButton()
+    private let thumbnailButton = ThumbnailButton()
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -43,35 +30,67 @@ class ShootingViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        setUI()
+        setLayout()
+
+        checkCameraPermissions()
+        scannerView.autoDectector.delegate = self
+
+        sutterButton.addTarget(self, action: #selector(tappedTakePhoto), for: .touchUpInside)
+        thumbnailButton.addTarget(self, action: #selector(tappedThumbnail), for: .touchUpInside)
+
+        let button = ToggleButton()
+
+        view.addSubview(button)
+        button.translatesAutoresizingMaskIntoConstraints = false
+
+        button.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        button.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+    }
+
+    private func setUI() {
         view.backgroundColor = .white
         view.addSubview(sutterButton)
         view.addSubview(saveButton)
         view.addSubview(thumbnailButton)
         view.addSubview(scannerView)
 
-        checkCameraPermissions()
+        sutterButton.layer.cornerRadius = 40
+        sutterButton.layer.borderWidth = 20
+        sutterButton.layer.borderColor = UIColor.main.cgColor
 
-        scannerView.autoDectector.delegate = self
-
-        sutterButton.addTarget(self, action: #selector(tappedTakePhoto), for: .touchUpInside)
-        thumbnailButton.addTarget(self, action: #selector(tappedThumbnail), for: .touchUpInside)
+        saveButton.setTitle("저장", for: .normal)
+        saveButton.setTitleColor(.black, for: .normal)
     }
 
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        let layerHeight = view.frame.width / 3 * 4
-        let y = (view.frame.height - layerHeight) / 2
-        scannerView.frame = CGRect(x: 0,
-                                    y: y,
-                                    width: view.frame.width,
-                                    height: layerHeight)
+    private func setLayout() {
+        scannerView.translatesAutoresizingMaskIntoConstraints = false
+        thumbnailButton.translatesAutoresizingMaskIntoConstraints = false
+        sutterButton.translatesAutoresizingMaskIntoConstraints = false
+        saveButton.translatesAutoresizingMaskIntoConstraints = false
 
-        sutterButton.center = CGPoint(x: view.frame.width / 2,
-                                      y: view.frame.height - 80)
-        saveButton.center = CGPoint(x: view.frame.width - 60,
-                                    y: view.frame.height - 80)
-        thumbnailButton.center = CGPoint(x: 60,
-                                    y: view.frame.height - 80)
+        NSLayoutConstraint.activate([
+            scannerView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            scannerView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            scannerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+            scannerView.heightAnchor.constraint(equalTo: scannerView.widthAnchor, multiplier: 4/3),
+
+            thumbnailButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            thumbnailButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -40),
+            thumbnailButton.widthAnchor.constraint(equalToConstant: 80),
+            thumbnailButton.heightAnchor.constraint(equalToConstant: 80),
+
+            sutterButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            sutterButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -40),
+            sutterButton.widthAnchor.constraint(equalToConstant: 80),
+            sutterButton.heightAnchor.constraint(equalToConstant: 80),
+
+            saveButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            saveButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -40),
+            saveButton.widthAnchor.constraint(equalToConstant: 80),
+            saveButton.heightAnchor.constraint(equalToConstant: 80),
+        ])
     }
 
     private func setNavigationBar() {
@@ -157,8 +176,12 @@ extension ShootingViewController: RepointViewControllerDelegate {
 }
 
 extension ShootingViewController: AutoDectectorable {
-    func autoDectectorDidDeteced(_ autoDetector: AutoDetector, processing: CGFloat) {
-        print(processing)
+    func autoDectectorWillDetected(_ autoDetector: AutoDetector) {
+
+    }
+    
+    func autoDectectorDidDetected(_ autoDetector: AutoDetector, processing: CGFloat) {
+
     }
 
     func autoDectectorCompleted(_ autoDetector: AutoDetector) {
