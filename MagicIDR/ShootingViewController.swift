@@ -17,7 +17,7 @@ class ShootingViewController: UIViewController {
     }
 
     private let scannerView = ScannerView()
-    private let sutterButton = UIButton()
+    private let sutterButton = SutterButton()
     private let saveButton = UIButton()
     private let thumbnailButton = ThumbnailButton()
     private let toggleButton = ToggleButton()
@@ -48,10 +48,6 @@ class ShootingViewController: UIViewController {
         view.addSubview(saveButton)
         view.addSubview(thumbnailButton)
         view.addSubview(scannerView)
-
-        sutterButton.layer.cornerRadius = 40
-        sutterButton.layer.borderWidth = 20
-        sutterButton.layer.borderColor = UIColor.main.cgColor
 
         saveButton.setTitle("저장", for: .normal)
         saveButton.setTitleColor(.black, for: .normal)
@@ -181,11 +177,11 @@ extension ShootingViewController: RepointViewControllerDelegate {
 
 extension ShootingViewController: AutoDectectorable {
     func autoDectectorWillDetected(_ autoDetector: AutoDetector) {
-
+        self.sutterButton.updateProgress(0)
     }
     
     func autoDectectorDidDetected(_ autoDetector: AutoDetector, processing: CGFloat) {
-
+        self.sutterButton.updateProgress(processing)
     }
 
     func autoDectectorCompleted(_ autoDetector: AutoDetector) {

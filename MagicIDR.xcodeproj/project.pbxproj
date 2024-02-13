@@ -17,6 +17,7 @@
 		F61BFD4D2B6CEAEB0052D077 /* ScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F61BFD4C2B6CEAEB0052D077 /* ScannerView.swift */; };
 		F68508F22B6F8A7600332DBA /* RectangleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68508F12B6F8A7600332DBA /* RectangleView.swift */; };
 		F699E8322B7B683C006D2237 /* ToggleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F699E8312B7B683C006D2237 /* ToggleButton.swift */; };
+		F699E8342B7B89EB006D2237 /* SutterButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F699E8332B7B89EB006D2237 /* SutterButton.swift */; };
 		F6DDEB2B2B720F0C0042074C /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6DDEB2A2B720F0C0042074C /* ContentViewController.swift */; };
 		F6DDEB2D2B74D3C40042074C /* CornerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6DDEB2C2B74D3C40042074C /* CornerView.swift */; };
 		F6E4E18B2B78AABB00781184 /* SegmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E4E18A2B78AABB00781184 /* SegmentView.swift */; };
@@ -46,6 +47,7 @@
 		F61BFD4C2B6CEAEB0052D077 /* ScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerView.swift; sourceTree = "<group>"; };
 		F68508F12B6F8A7600332DBA /* RectangleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RectangleView.swift; sourceTree = "<group>"; };
 		F699E8312B7B683C006D2237 /* ToggleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleButton.swift; sourceTree = "<group>"; };
+		F699E8332B7B89EB006D2237 /* SutterButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SutterButton.swift; sourceTree = "<group>"; };
 		F6DDEB2A2B720F0C0042074C /* ContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewController.swift; sourceTree = "<group>"; };
 		F6DDEB2C2B74D3C40042074C /* CornerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CornerView.swift; sourceTree = "<group>"; };
 		F6E4E18A2B78AABB00781184 /* SegmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentView.swift; sourceTree = "<group>"; };
@@ -117,6 +119,7 @@
 				F6DDEB2C2B74D3C40042074C /* CornerView.swift */,
 				F6E4E18A2B78AABB00781184 /* SegmentView.swift */,
 				F699E8312B7B683C006D2237 /* ToggleButton.swift */,
+				F699E8332B7B89EB006D2237 /* SutterButton.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -233,6 +236,7 @@
 				F6E4E18B2B78AABB00781184 /* SegmentView.swift in Sources */,
 				F6DDEB2D2B74D3C40042074C /* CornerView.swift in Sources */,
 				F61BFD4B2B6CE2BD0052D077 /* Scanner.swift in Sources */,
+				F699E8342B7B89EB006D2237 /* SutterButton.swift in Sources */,
 				F6F48C332B70D7D400D0ABB5 /* ThumbnailButton.swift in Sources */,
 				F699E8322B7B683C006D2237 /* ToggleButton.swift in Sources */,
 				F6F48C372B71005D00D0ABB5 /* PreviewViewController.swift in Sources */,

@@ -48,10 +48,11 @@ class AutoDetector {
         processing = 0
         isRectangleDetected = false
         timer?.invalidate()
+        delegate?.autoDectectorWillDetected(self)
     }
 
     @objc private func fireTimer() {
-        processing += 0.2
+        processing += 0.167
         delegate?.autoDectectorDidDetected(self, processing: processing)
 
         if processing >= 1.0 {
