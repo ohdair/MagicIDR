@@ -31,13 +31,13 @@ class AutoDetector {
     }
 
     private func startTimer() {
-        processing = 0
         timer?.invalidate()
 
         timer = Timer.scheduledTimer(timeInterval: 0.3, target: self, selector: #selector(fireTimer), userInfo: nil, repeats: true)
     }
 
     private func resetTimer() {
+        processing = 0
         isRectangleDetected = false
         timer?.invalidate()
     }
