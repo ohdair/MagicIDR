@@ -51,6 +51,8 @@ class ShootingViewController: UIViewController {
 
         checkCameraPermissions()
 
+        scannerView.autoDectector.delegate = self
+
         sutterButton.addTarget(self, action: #selector(tappedTakePhoto), for: .touchUpInside)
         thumbnailButton.addTarget(self, action: #selector(tappedThumbnail), for: .touchUpInside)
     }
@@ -151,5 +153,30 @@ extension ShootingViewController: RepointViewControllerDelegate {
         }
 
         images.push(newImage)
+    }
+}
+
+extension ShootingViewController: AutoDectectorable {
+    func autoDectectorDidDeteced(_ autoDetector: AutoDetector, processing: CGFloat) {
+        print(processing)
+    }
+
+    func autoDectectorCompleted(_ autoDetector: AutoDetector) {
+        Task {
+            guard let result = await scannerView.scan() else {
+                print("카메라 촬영에 실패하였습니다.")
+                return
+            }
+
+            var image: UIImage
+
+            if let perspectiveCorrection = PerspectiveCorrection(image: result).correct() {
+                image = UIImage(cgImage: perspectiveCorrection, scale: 1, orientation: .right)
+            } else {
+                image = UIImage(ciImage: result, scale: 1, orientation: .right)
+            }
+
+            images.push(image)
+        }
     }
 }

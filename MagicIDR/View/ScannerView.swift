@@ -9,6 +9,8 @@ import UIKit
 
 class ScannerView: UIView {
 
+    let autoDectector = AutoDetector()
+
     private let scanner = Scanner()
 
     private var detectedRectangleLayer = CAShapeLayer() {
@@ -52,10 +54,13 @@ extension ScannerView: ScannerDelegate, RectangleDetectable {
         DispatchQueue.main.async {
             guard let rectangleFeature = self.detectRectangle(in: capturedVideo) else {
                 self.detectedRectangleLayer.removeFromSuperlayer()
+                self.autoDectector.detect(false)
                 return
             }
 
-            let adjustmentRectangleFeature =  RectangleFeatureAdjustmetor(rectangleFeature)
+            self.autoDectector.detect(true)
+
+            let adjustmentRectangleFeature = RectangleFeatureAdjustmetor(rectangleFeature)
             let scale = capturedVideo.extent.height / self.bounds.width
             let newFeature = adjustmentRectangleFeature.adjustRectangle(with: scale)
 
