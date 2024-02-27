@@ -17,6 +17,7 @@
 		F61BFD4D2B6CEAEB0052D077 /* ScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F61BFD4C2B6CEAEB0052D077 /* ScannerView.swift */; };
 		F68388F82B8DA0A200BDA5A6 /* CaptureSoundToggleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68388F72B8DA0A200BDA5A6 /* CaptureSoundToggleView.swift */; };
 		F68388FA2B8DC3CF00BDA5A6 /* AutoCaptureToggleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68388F92B8DC3CF00BDA5A6 /* AutoCaptureToggleView.swift */; };
+		F68388FC2B8DD43E00BDA5A6 /* AbilitiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68388FB2B8DD43E00BDA5A6 /* AbilitiesView.swift */; };
 		F68508F22B6F8A7600332DBA /* RectangleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68508F12B6F8A7600332DBA /* RectangleView.swift */; };
 		F699E8322B7B683C006D2237 /* ToggleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F699E8312B7B683C006D2237 /* ToggleButton.swift */; };
 		F699E8342B7B89EB006D2237 /* SutterButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F699E8332B7B89EB006D2237 /* SutterButton.swift */; };
@@ -49,6 +50,7 @@
 		F61BFD4C2B6CEAEB0052D077 /* ScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerView.swift; sourceTree = "<group>"; };
 		F68388F72B8DA0A200BDA5A6 /* CaptureSoundToggleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureSoundToggleView.swift; sourceTree = "<group>"; };
 		F68388F92B8DC3CF00BDA5A6 /* AutoCaptureToggleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoCaptureToggleView.swift; sourceTree = "<group>"; };
+		F68388FB2B8DD43E00BDA5A6 /* AbilitiesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbilitiesView.swift; sourceTree = "<group>"; };
 		F68508F12B6F8A7600332DBA /* RectangleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RectangleView.swift; sourceTree = "<group>"; };
 		F699E8312B7B683C006D2237 /* ToggleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleButton.swift; sourceTree = "<group>"; };
 		F699E8332B7B89EB006D2237 /* SutterButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SutterButton.swift; sourceTree = "<group>"; };
@@ -124,6 +126,7 @@
 				F6E4E18A2B78AABB00781184 /* SegmentView.swift */,
 				F699E8312B7B683C006D2237 /* ToggleButton.swift */,
 				F699E8332B7B89EB006D2237 /* SutterButton.swift */,
+				F68388FB2B8DD43E00BDA5A6 /* AbilitiesView.swift */,
 				F68388F72B8DA0A200BDA5A6 /* CaptureSoundToggleView.swift */,
 				F68388F92B8DC3CF00BDA5A6 /* AutoCaptureToggleView.swift */,
 			);
@@ -237,6 +240,7 @@
 				F6DDEB2B2B720F0C0042074C /* ContentViewController.swift in Sources */,
 				F6E4E19A2B7A13C500781184 /* RectangleFeature.swift in Sources */,
 				F6E4E19C2B7B1C9F00781184 /* AutoDetector.swift in Sources */,
+				F68388FC2B8DD43E00BDA5A6 /* AbilitiesView.swift in Sources */,
 				F68388FA2B8DC3CF00BDA5A6 /* AutoCaptureToggleView.swift in Sources */,
 				F6F48C2F2B7099F500D0ABB5 /* RectangleDetectable.swift in Sources */,
 				F61BFD492B6CC8230052D077 /* RepointViewController.swift in Sources */,

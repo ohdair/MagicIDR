@@ -8,42 +8,54 @@
 import SwiftUI
 
 struct AutoCaptureToggleView: View {
-    @State private var isSelected = false
-    @State private var isOn = false
+    @Binding var isSelected: Bool
+    @Binding var isOn: Bool
 
     var body: some View {
         ZStack {
             HStack(alignment: .center) {
-                Spacer()
-                Spacer()
-
-                Button(action: {
-                    isOn.toggle()
-                    withAnimation {
-                        isSelected.toggle()
+                if isSelected {
+                    Spacer()
+                    Spacer()
+                    
+                    Text("자동 촬영")
+                        .foregroundStyle(.yellow)
+                    
+                    Spacer()
+                    
+                    Button(action: {
+                        isOn = false
+                        withAnimation(.easeInOut(duration: 0.3)) {
+                            isSelected.toggle()
+                        }
+                    }) {
+                        Text("끔")
+                            .foregroundStyle(isOn ? .white : .yellow)
                     }
-                }) {
-                    Text("끔")
-                        .foregroundStyle(isOn ? .white : .yellow)
-                }
-
-                Spacer()
-
-                Button(action: {
-                    isOn.toggle()
-                    withAnimation {
-                        isSelected.toggle()
+                    
+                    Spacer()
+                    
+                    Button(action: {
+                        isOn = true
+                        withAnimation(.easeInOut(duration: 0.3)) {
+                            isSelected.toggle()
+                        }
+                    }) {
+                        Text("켬")
+                            .foregroundStyle(isOn ? .yellow : .white)
                     }
-                }) {
-                    Text("켬")
-                        .foregroundStyle(isOn ? .yellow : .white)
+                    
+                    Spacer()
                 }
-
-                Spacer()
             }
-            .frame(width: isSelected ? 180 : 0, height: 60)
-            .frame(maxWidth: isSelected ? 250 : nil)
+            .frame(width: isSelected ? .infinity : 0, height: 60)
+            .frame(maxWidth: isSelected ? .infinity : nil)
             .background(Capsule().fill(Color.lead))
+            .onTapGesture {
+                withAnimation(.easeInOut(duration: 0.3)) {
+                    isSelected.toggle()
+                }
+            }
 
             Circle()
                 .fill(isSelected ? Color.tungsten : Color.lead)
@@ -62,9 +74,9 @@ struct AutoCaptureToggleView: View {
                             .offset(x: 12, y: 13)
                     }
                 )
-                .frame(maxWidth: isSelected ? 250 : nil, alignment: .leading)
+                .frame(maxWidth: isSelected ? .infinity : nil, alignment: .leading)
                 .onTapGesture {
-                    withAnimation(.snappy) {
+                    withAnimation {
                         isSelected.toggle()
                     }
                 }
@@ -90,11 +102,5 @@ private struct StrokeText: View {
             Text(text)
         }
 
-    }
-}
-
-struct AutoCaptureToggleView_Previews: PreviewProvider {
-    static var previews: some View {
-        AutoCaptureToggleView()
     }
 }
