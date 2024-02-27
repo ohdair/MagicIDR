@@ -79,7 +79,7 @@ struct CaptureSoundToggleView: View {
                 )
                 .frame(maxWidth: isSelected ? .infinity : nil, alignment: .leading)
                 .onTapGesture {
-                    withAnimation {
+                    withAnimation(.easeInOut(duration: 0.3)) {
                         isSelected.toggle()
                     }
                 }

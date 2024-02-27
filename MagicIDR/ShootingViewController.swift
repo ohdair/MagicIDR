@@ -21,8 +21,9 @@ class ShootingViewController: UIViewController {
     private let sutterButton = SutterButton()
     private let saveButton = UIButton()
     private let thumbnailButton = ThumbnailButton()
+    private let displayController = UIHostingController(rootView: DisplayView())
     private let abilitiesView = AbilitiesView()
-    private lazy var hostingController = UIHostingController(rootView: abilitiesView)
+    private lazy var abilitiesController = UIHostingController(rootView: abilitiesView)
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -52,9 +53,14 @@ class ShootingViewController: UIViewController {
         view.addSubview(thumbnailButton)
         view.addSubview(scannerView)
 
-        addChild(hostingController)
-        view.addSubview(hostingController.view)
-        hostingController.view.backgroundColor = .clear
+        scannerView.backgroundColor = .white
+
+        addChild(displayController)
+        addChild(abilitiesController)
+        view.addSubview(displayController.view)
+        view.addSubview(abilitiesController.view)
+        displayController.view.backgroundColor = .clear
+        abilitiesController.view.backgroundColor = .clear
 
         saveButton.setTitle("저장", for: .normal)
         saveButton.setTitleColor(.black, for: .normal)
@@ -65,9 +71,15 @@ class ShootingViewController: UIViewController {
         thumbnailButton.translatesAutoresizingMaskIntoConstraints = false
         sutterButton.translatesAutoresizingMaskIntoConstraints = false
         saveButton.translatesAutoresizingMaskIntoConstraints = false
-        hostingController.view.translatesAutoresizingMaskIntoConstraints = false
+        displayController.view.translatesAutoresizingMaskIntoConstraints = false
+        abilitiesController.view.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
+            displayController.view.topAnchor.constraint(equalTo: view.topAnchor),
+            displayController.view.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            displayController.view.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            displayController.view.bottomAnchor.constraint(equalTo: scannerView.topAnchor, constant: -5),
+
             scannerView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             scannerView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -50),
             scannerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -88,10 +100,10 @@ class ShootingViewController: UIViewController {
             saveButton.widthAnchor.constraint(equalToConstant: 80),
             saveButton.heightAnchor.constraint(equalToConstant: 80),
 
-            hostingController.view.topAnchor.constraint(equalTo: scannerView.bottomAnchor, constant: 5),
-            hostingController.view.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            hostingController.view.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            hostingController.view.bottomAnchor.constraint(equalTo: sutterButton.topAnchor, constant: -5),
+            abilitiesController.view.topAnchor.constraint(equalTo: scannerView.bottomAnchor, constant: 5),
+            abilitiesController.view.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            abilitiesController.view.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            abilitiesController.view.bottomAnchor.constraint(equalTo: sutterButton.topAnchor, constant: -5),
         ])
     }
 
