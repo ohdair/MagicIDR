@@ -30,6 +30,8 @@ class Scanner: NSObject {
 
     private var scanSuccessBlock: ((CIImage?) -> Void)?
 
+    var isMuted: Bool = true
+
     override init() {
         super.init()
 
@@ -86,6 +88,14 @@ class Scanner: NSObject {
 }
 
 extension Scanner: AVCaptureVideoDataOutputSampleBufferDelegate {
+    func photoOutput(_ output: AVCapturePhotoOutput, willCapturePhotoFor resolvedSettings: AVCaptureResolvedPhotoSettings) {
+        if isMuted {
+            AudioServicesDisposeSystemSoundID(1108)
+        } else {
+            AudioServicesPlaySystemSound(1108)
+        }
+    }
+
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         guard let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else { return }
         let ciImage = CIImage(cvPixelBuffer: pixelBuffer)
