@@ -14,39 +14,51 @@ struct CaptureSoundToggleView: View {
     var body: some View {
         ZStack {
             HStack(alignment: .center) {
-                Spacer()
-                Spacer()
-
-                Text("셔터음")
-                    .foregroundStyle(.yellow)
-
-                Spacer()
-
-                Button(action: {
-                    isMuted.toggle()
-                    withAnimation(.easeInOut(duration: 0.3)) {
-                        isSelected.toggle()
+                if isSelected {
+                    Spacer()
+                    Spacer()
+                    
+                    Text("셔터음")
+                        .foregroundStyle(.yellow)
+                    
+                    Spacer()
+                    
+                    Button(action: {
+                        isMuted = true
+                        NotificationCenter.default.post(
+                            name: .isMuted,
+                            object: nil,
+                            userInfo: [NotificationKey.isMuted: true]
+                        )
+                        withAnimation(.easeInOut(duration: 0.3)) {
+                            isSelected.toggle()
+                        }
+                    }) {
+                        Text("끔")
+                            .foregroundStyle(isMuted ? .yellow : .white)
                     }
-                }) {
-                    Text("끔")
-                        .foregroundStyle(isMuted ? .yellow : .white)
-                }
-
-                Spacer()
-
-                Button(action: {
-                    isMuted.toggle()
-                    withAnimation(.easeInOut(duration: 0.3)) {
-                        isSelected.toggle()
+                    
+                    Spacer()
+                    
+                    Button(action: {
+                        isMuted = false
+                        NotificationCenter.default.post(
+                            name: .isMuted,
+                            object: nil,
+                            userInfo: [NotificationKey.isMuted: false]
+                        )
+                        withAnimation(.easeInOut(duration: 0.3)) {
+                            isSelected.toggle()
+                        }
+                    }) {
+                        Text("켬")
+                            .foregroundStyle(isMuted ? .white : .yellow)
                     }
-                }) {
-                    Text("켬")
-                        .foregroundStyle(isMuted ? .white : .yellow)
+                    
+                    Spacer()
                 }
-
-                Spacer()
             }
-            .frame(width: isSelected ? .infinity : 0, height: 60)
+            .frame(height: 50)
             .frame(maxWidth: isSelected ? .infinity : nil)
             .background(Capsule().fill(Color.lead))
             .onTapGesture {
@@ -57,12 +69,12 @@ struct CaptureSoundToggleView: View {
 
             Circle()
                 .fill(isSelected ? Color.tungsten : Color.lead)
-                .frame(width: 60, height: 60)
+                .frame(width: 50, height: 50)
                 .overlay(
                     Image(systemName: isMuted ? "speaker.slash.fill" : "speaker.wave.2.fill")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                    .frame(width: 30, height: 30)
+                    .frame(width: 25, height: 25)
                     .foregroundColor(isMuted ? .white : .yellow)
                 )
                 .frame(maxWidth: isSelected ? .infinity : nil, alignment: .leading)
@@ -72,6 +84,5 @@ struct CaptureSoundToggleView: View {
                     }
                 }
         }
-        .padding()
     }
 }

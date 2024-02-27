@@ -25,6 +25,11 @@ struct AutoCaptureToggleView: View {
                     
                     Button(action: {
                         isOn = false
+                        NotificationCenter.default.post(
+                            name: .isAutoCapture,
+                            object: nil,
+                            userInfo: [NotificationKey.isAutoCapture:false]
+                        )
                         withAnimation(.easeInOut(duration: 0.3)) {
                             isSelected.toggle()
                         }
@@ -37,6 +42,11 @@ struct AutoCaptureToggleView: View {
                     
                     Button(action: {
                         isOn = true
+                        NotificationCenter.default.post(
+                            name: .isAutoCapture,
+                            object: nil,
+                            userInfo: [NotificationKey.isAutoCapture:true]
+                        )
                         withAnimation(.easeInOut(duration: 0.3)) {
                             isSelected.toggle()
                         }
@@ -48,7 +58,7 @@ struct AutoCaptureToggleView: View {
                     Spacer()
                 }
             }
-            .frame(width: isSelected ? .infinity : 0, height: 60)
+            .frame(height: 50)
             .frame(maxWidth: isSelected ? .infinity : nil)
             .background(Capsule().fill(Color.lead))
             .onTapGesture {
@@ -59,19 +69,19 @@ struct AutoCaptureToggleView: View {
 
             Circle()
                 .fill(isSelected ? Color.tungsten : Color.lead)
-                .frame(width: 60, height: 60)
+                .frame(width: 50, height: 50)
                 .overlay(
                     ZStack {
                         Image(systemName: "camera.metering.spot")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
-                            .frame(width: 40, height: 40)
+                            .frame(width: 25, height: 25)
                             .foregroundColor(isOn ? .yellow : .white)
 
                         StrokeText(text: "Auto", width: 1, color: .tungsten)
                             .foregroundStyle(isOn ? .yellow : .white)
                             .font(.caption)
-                            .offset(x: 12, y: 13)
+                            .offset(x: 7, y: 9)
                     }
                 )
                 .frame(maxWidth: isSelected ? .infinity : nil, alignment: .leading)
@@ -81,7 +91,6 @@ struct AutoCaptureToggleView: View {
                     }
                 }
         }
-        .padding()
     }
 }
 

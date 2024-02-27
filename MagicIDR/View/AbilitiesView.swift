@@ -17,15 +17,21 @@ struct AbilitiesView: View {
 
     var body: some View {
         HStack {
+            Spacer()
+
             if !isAutoCaptureViewSelected {
                 CaptureSoundToggleView(isSelected: $isCaptureSoundViewSelected,
                                        isMuted: $isMuted)
             }
 
+            Spacer()
+
             if !isCaptureSoundViewSelected {
                 AutoCaptureToggleView(isSelected: $isAutoCaptureViewSelected,
                                       isOn: $isAuto)
             }
+
+            Spacer()
         }
     }
 }
