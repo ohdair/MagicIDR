@@ -53,8 +53,6 @@ class ShootingViewController: UIViewController {
         view.addSubview(thumbnailButton)
         view.addSubview(scannerView)
 
-        scannerView.backgroundColor = .white
-
         addChild(displayController)
         addChild(abilitiesController)
         view.addSubview(displayController.view)
