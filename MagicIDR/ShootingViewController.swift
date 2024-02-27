@@ -46,6 +46,11 @@ class ShootingViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(handleCaptureSound), name: .isMuted, object: nil)
     }
 
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: false)
+    }
+
     private func setUI() {
         view.backgroundColor = .black.withAlphaComponent(0.5)
         view.addSubview(sutterButton)
