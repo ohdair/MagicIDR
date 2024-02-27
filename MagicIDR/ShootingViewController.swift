@@ -43,7 +43,7 @@ class ShootingViewController: UIViewController {
     }
 
     private func setUI() {
-        view.backgroundColor = .white
+        view.backgroundColor = .black.withAlphaComponent(0.5)
         view.addSubview(sutterButton)
         view.addSubview(saveButton)
         view.addSubview(thumbnailButton)
@@ -61,14 +61,14 @@ class ShootingViewController: UIViewController {
 
         NSLayoutConstraint.activate([
             scannerView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            scannerView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            scannerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+            scannerView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -30),
+            scannerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             scannerView.heightAnchor.constraint(equalTo: scannerView.widthAnchor, multiplier: 4/3),
 
             thumbnailButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            thumbnailButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -40),
-            thumbnailButton.widthAnchor.constraint(equalToConstant: 80),
-            thumbnailButton.heightAnchor.constraint(equalToConstant: 80),
+            thumbnailButton.centerYAnchor.constraint(equalTo: sutterButton.centerYAnchor, constant: 5),
+            thumbnailButton.widthAnchor.constraint(equalToConstant: 60),
+            thumbnailButton.heightAnchor.constraint(equalToConstant: 60),
 
             sutterButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             sutterButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -40),
