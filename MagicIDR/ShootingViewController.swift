@@ -191,8 +191,8 @@ extension ShootingViewController: RepointViewControllerDelegate {
 
         var newImage: UIImage
 
-        if let cgImage = PerspectiveCorrection(image: image).correct(with: rectangleFeature) {
-            newImage = UIImage(cgImage: cgImage, scale: 1, orientation: .left)
+        if let ciImage = PerspectiveCorrection(image: image).correctionImage(through: rectangleFeature) {
+            newImage = UIImage(ciImage: ciImage, scale: 1, orientation: .left)
         } else {
             newImage = UIImage(ciImage: image, scale: 1, orientation: .left)
         }
@@ -219,8 +219,8 @@ extension ShootingViewController: AutoDectectorable {
 
             var image: UIImage
 
-            if let perspectiveCorrection = PerspectiveCorrection(image: result).correct() {
-                image = UIImage(cgImage: perspectiveCorrection, scale: 1, orientation: .right)
+            if let perspectiveCorrection = PerspectiveCorrection(image: result).correctImage() {
+                image = UIImage(ciImage: perspectiveCorrection, scale: 1, orientation: .right)
             } else {
                 image = UIImage(ciImage: result, scale: 1, orientation: .right)
             }

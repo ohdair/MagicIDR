@@ -22,6 +22,7 @@ class ThumbnailButton: UIButton {
 
     private let thumbnailImageView = {
         let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFit
         imageView.layer.cornerRadius = 8
         imageView.backgroundColor = .white.withAlphaComponent(0.2)
         return imageView
@@ -64,6 +65,7 @@ class ThumbnailButton: UIButton {
 
     func setThumbnail(image: UIImage?, savedImagesCount count: Int) {
         countLabel.text = "\(count)"
+        thumbnailImageView.image = nil
         thumbnailImageView.image = image
     }
 }

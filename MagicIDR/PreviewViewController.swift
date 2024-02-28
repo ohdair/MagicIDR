@@ -47,7 +47,7 @@ class PreviewViewController: UIViewController {
         return UIButton(configuration: buttonConfig)
     }()
 
-    private let cropButton = {
+    private let exportButton = {
         let imageConfig = UIImage.SymbolConfiguration(pointSize: 17, weight: .bold)
         let image = UIImage(systemName: "square.and.arrow.up", withConfiguration: imageConfig)
         var buttonConfig = UIButton.Configuration.plain()
@@ -60,7 +60,7 @@ class PreviewViewController: UIViewController {
         let stackView = UIStackView()
         stackView.addArrangedSubview(deleteButton)
         stackView.addArrangedSubview(counterclockwiseButton)
-        stackView.addArrangedSubview(cropButton)
+        stackView.addArrangedSubview(exportButton)
         stackView.distribution = .fillEqually
         stackView.backgroundColor = .white.withAlphaComponent(0.1)
         return stackView
@@ -257,8 +257,6 @@ fileprivate extension UIImage {
 
         if let ciImage {
             return UIImage(ciImage: ciImage, scale: 1, orientation: newOrientation)
-        } else if let cgImage {
-            return UIImage(cgImage: cgImage, scale: 1, orientation: newOrientation)
         } else {
             return nil
         }
