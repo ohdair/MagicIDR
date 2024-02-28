@@ -56,6 +56,7 @@ class RepointViewController: UIViewController, RectangleDetectable {
         imageView.image = UIImage(ciImage: ciImage, scale: 1, orientation: .right)
         view.addSubview(imageView)
         view.addSubview(rectangleView)
+        view.backgroundColor = .systemBackground
 
         navigationController?.navigationBar.backgroundColor = .clear
         navigationItem.leftBarButtonItem = backBarButtonItem

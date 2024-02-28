@@ -34,23 +34,25 @@ class PreviewViewController: UIViewController {
         let image = UIImage(systemName: "trash", withConfiguration: imageConfig)
         var buttonConfig = UIButton.Configuration.plain()
         buttonConfig.image = image
-        buttonConfig.baseForegroundColor = .main
+        buttonConfig.baseForegroundColor = .white
         return UIButton(configuration: buttonConfig)
     }()
 
     private let counterclockwiseButton = {
-        let button = UIButton()
-        button.setTitle("반시계", for: .normal)
-        button.setTitleColor(.black, for: .normal)
-        return button
+        let imageConfig = UIImage.SymbolConfiguration(pointSize: 17, weight: .bold)
+        let image = UIImage(systemName: "arrow.counterclockwise", withConfiguration: imageConfig)
+        var buttonConfig = UIButton.Configuration.plain()
+        buttonConfig.image = image
+        buttonConfig.baseForegroundColor = .white
+        return UIButton(configuration: buttonConfig)
     }()
 
     private let cropButton = {
         let imageConfig = UIImage.SymbolConfiguration(pointSize: 17, weight: .bold)
-        let image = UIImage(systemName: "crop", withConfiguration: imageConfig)
+        let image = UIImage(systemName: "square.and.arrow.up", withConfiguration: imageConfig)
         var buttonConfig = UIButton.Configuration.plain()
         buttonConfig.image = image
-        buttonConfig.baseForegroundColor = .main
+        buttonConfig.baseForegroundColor = .white
         return UIButton(configuration: buttonConfig)
     }()
 
@@ -60,7 +62,7 @@ class PreviewViewController: UIViewController {
         stackView.addArrangedSubview(counterclockwiseButton)
         stackView.addArrangedSubview(cropButton)
         stackView.distribution = .fillEqually
-        stackView.backgroundColor = .black.withAlphaComponent(0.1)
+        stackView.backgroundColor = .white.withAlphaComponent(0.1)
         return stackView
     }()
 
@@ -89,7 +91,7 @@ class PreviewViewController: UIViewController {
     }
 
     private func setUI() {
-        view.backgroundColor = .white
+        view.backgroundColor = .systemBackground
         addChild(pageViewController)
         view.addSubview(pageViewController.view)
         view.addSubview(abilitiesStackView)
@@ -118,7 +120,7 @@ class PreviewViewController: UIViewController {
         let titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
 
         self.navigationController?.navigationBar.titleTextAttributes = titleTextAttributes
-        self.navigationController?.navigationBar.backgroundColor = UIColor.main
+        self.navigationController?.navigationBar.backgroundColor = .clear
         self.navigationController?.navigationBar.tintColor = .white
         self.navigationItem.leftBarButtonItem = backBarButtonItem
 

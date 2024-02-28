@@ -52,7 +52,7 @@ class ShootingViewController: UIViewController {
     }
 
     private func setUI() {
-        view.backgroundColor = .black.withAlphaComponent(0.5)
+        view.backgroundColor = .systemBackground
         view.addSubview(sutterButton)
         view.addSubview(saveButton)
         view.addSubview(thumbnailButton)
