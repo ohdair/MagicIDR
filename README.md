@@ -1,3 +1,13 @@
+# 앱 화면
+사각형을 감지하여 공유할 수 있는 앱
+- 감지된 사각형을 자동/수동으로 촬영
+- 촬영음 유/무 결정
+- 수동으로 촬영된 이미지를 모서리/변을 터치에 따라 수정할 수 있는 모드 지원
+- 촬영된 이미지 삭제 및 회전 그리고 공유 기능
+  
+|메인화면|편집화면|미리보기화면|
+|:---:|:---:|:---:|
+|<img src="https://github.com/ohdair/MagicIDR/assets/79438622/e8a0e37f-7eb4-4bd1-ae44-e81104c0839f" width=200>|<img src="https://github.com/ohdair/MagicIDR/assets/79438622/6746e161-9bdd-48df-8ef3-a825030efbbf" width=200>|<img src="https://github.com/ohdair/MagicIDR/assets/79438622/c7b1fa7f-bf4d-4236-bede-1efa84b55de5" width=200>|
 
 ## 흐름에 따른 다이어그램
 각 View에 따라 유저 제스처에 대한 동작을 다이어그램으로 표현
@@ -216,4 +226,15 @@ private func outOfSuperview(through point: CGPoint) -> Bool {
 
     return false
 }
+```
+---
+## 변경된 UI
+SwiftUI로 연결된 촬영 수동/자동 모드 및 촬영음 유/무를 선택하는 애니메이션을 추가한 View
+이미지를 탭하면 옵션을 선택할 수 있는 애니메이션 추가
+
+```swift
+private lazy var abilitiesController = UIHostingController(rootView: abilitiesView)
+
+view.addSubview(abilitiesController.view)
+abilitiesController.view.backgroundColor = .clear
 ```
