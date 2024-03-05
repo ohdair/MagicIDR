@@ -9,6 +9,12 @@
 |:---:|:---:|:---:|
 |<img src="https://github.com/ohdair/MagicIDR/assets/79438622/e8a0e37f-7eb4-4bd1-ae44-e81104c0839f" width=200>|<img src="https://github.com/ohdair/MagicIDR/assets/79438622/6746e161-9bdd-48df-8ef3-a825030efbbf" width=200>|<img src="https://github.com/ohdair/MagicIDR/assets/79438622/c7b1fa7f-bf4d-4236-bede-1efa84b55de5" width=200>|
 
+# 앱 동작
+
+|자동촬영|UI 변경|편집화면|
+|:---:|:---:|:---:|
+|<img src="https://github.com/ohdair/MagicIDR/assets/79438622/013b2320-28a6-41c1-8b18-3394e155a4fe" width=200>|<img src="https://github.com/ohdair/MagicIDR/assets/79438622/eeb59e17-f8ba-408e-9762-4412acb4d498" width=200>|<img src="https://github.com/ohdair/MagicIDR/assets/79438622/3511d04e-d1e0-458d-9307-94c08e96c688" width=200>|
+
 ## 흐름에 따른 다이어그램
 각 View에 따라 유저 제스처에 대한 동작을 다이어그램으로 표현
 
