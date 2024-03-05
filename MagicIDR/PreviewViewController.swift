@@ -76,6 +76,7 @@ class PreviewViewController: UIViewController {
 
         deleteButton.addTarget(self, action: #selector(deleteImage), for: .touchUpInside)
         counterclockwiseButton.addTarget(self, action: #selector(rotatingImage), for: .touchUpInside)
+        exportButton.addTarget(self, action: #selector(exportImage), for: .touchUpInside)
     }
 
     private func setPageViewController() {
@@ -191,6 +192,19 @@ class PreviewViewController: UIViewController {
         pageViewController.setViewControllers([willAppearController],
                                               direction: .forward,
                                               animated: false)
+    }
+
+    @objc private func exportImage() {
+        guard let viewController =  self.pageViewController.viewControllers?.first,
+              let contentController = viewController as? ContentViewController,
+              let currentIndex = contentController.pageIndex,
+              let image = images.element(at: currentIndex) else {
+            return
+        }
+
+        let imageProvider = ShareableImageProvider(image: image, index: currentIndex)
+        let activityViewController = UIActivityViewController(activityItems : [imageProvider], applicationActivities: nil)
+        self.present(activityViewController, animated: true, completion: nil)
     }
 }
 

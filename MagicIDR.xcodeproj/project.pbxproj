@@ -23,6 +23,7 @@
 		F68389022B8E0FB900BDA5A6 /* StrokeText.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68389012B8E0FB900BDA5A6 /* StrokeText.swift */; };
 		F68389042B8E132D00BDA5A6 /* CaptureSoundDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68389032B8E132D00BDA5A6 /* CaptureSoundDisplayView.swift */; };
 		F68389062B8E146000BDA5A6 /* DisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68389052B8E146000BDA5A6 /* DisplayView.swift */; };
+		F68389082B9068CE00BDA5A6 /* ShareableImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68389072B9068CE00BDA5A6 /* ShareableImage.swift */; };
 		F68508F22B6F8A7600332DBA /* RectangleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68508F12B6F8A7600332DBA /* RectangleView.swift */; };
 		F699E8322B7B683C006D2237 /* ToggleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F699E8312B7B683C006D2237 /* ToggleButton.swift */; };
 		F699E8342B7B89EB006D2237 /* SutterButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F699E8332B7B89EB006D2237 /* SutterButton.swift */; };
@@ -61,6 +62,7 @@
 		F68389012B8E0FB900BDA5A6 /* StrokeText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrokeText.swift; sourceTree = "<group>"; };
 		F68389032B8E132D00BDA5A6 /* CaptureSoundDisplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureSoundDisplayView.swift; sourceTree = "<group>"; };
 		F68389052B8E146000BDA5A6 /* DisplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayView.swift; sourceTree = "<group>"; };
+		F68389072B9068CE00BDA5A6 /* ShareableImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareableImage.swift; sourceTree = "<group>"; };
 		F68508F12B6F8A7600332DBA /* RectangleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RectangleView.swift; sourceTree = "<group>"; };
 		F699E8312B7B683C006D2237 /* ToggleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleButton.swift; sourceTree = "<group>"; };
 		F699E8332B7B89EB006D2237 /* SutterButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SutterButton.swift; sourceTree = "<group>"; };
@@ -159,6 +161,7 @@
 				F6E4E1972B79EB0200781184 /* DistanceMeasurable.swift */,
 				F6E4E1992B7A13C500781184 /* RectangleFeature.swift */,
 				F6E4E19B2B7B1C9F00781184 /* AutoDetector.swift */,
+				F68389072B9068CE00BDA5A6 /* ShareableImage.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -267,6 +270,7 @@
 				F68388FE2B8DE7D900BDA5A6 /* Notification.swift in Sources */,
 				F61BFD4B2B6CE2BD0052D077 /* Scanner.swift in Sources */,
 				F68389062B8E146000BDA5A6 /* DisplayView.swift in Sources */,
+				F68389082B9068CE00BDA5A6 /* ShareableImage.swift in Sources */,
 				F699E8342B7B89EB006D2237 /* SutterButton.swift in Sources */,
 				F6F48C332B70D7D400D0ABB5 /* ThumbnailButton.swift in Sources */,
 				F699E8322B7B683C006D2237 /* ToggleButton.swift in Sources */,
