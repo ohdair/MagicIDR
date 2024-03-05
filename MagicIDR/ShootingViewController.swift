@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftUI
 import AVFoundation
 
 class ShootingViewController: UIViewController {
@@ -20,12 +21,13 @@ class ShootingViewController: UIViewController {
     private let sutterButton = SutterButton()
     private let saveButton = UIButton()
     private let thumbnailButton = ThumbnailButton()
-    private let toggleButton = ToggleButton()
+    private let displayController = UIHostingController(rootView: DisplayView())
+    private let abilitiesView = AbilitiesView()
+    private lazy var abilitiesController = UIHostingController(rootView: abilitiesView)
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
-        setNavigationBar()
+        navigationController?.setNavigationBarHidden(true, animated: false)
     }
 
     override func viewDidLoad() {
@@ -39,15 +41,29 @@ class ShootingViewController: UIViewController {
 
         sutterButton.addTarget(self, action: #selector(tappedTakePhoto), for: .touchUpInside)
         thumbnailButton.addTarget(self, action: #selector(tappedThumbnail), for: .touchUpInside)
-        toggleButton.addTarget(self, action: #selector(tappedToggleButton), for: .touchUpInside)
+
+        NotificationCenter.default.addObserver(self, selector: #selector(handleAutoCapture), name: .isAutoCapture, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handleCaptureSound), name: .isMuted, object: nil)
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: false)
     }
 
     private func setUI() {
-        view.backgroundColor = .white
+        view.backgroundColor = .systemBackground
         view.addSubview(sutterButton)
         view.addSubview(saveButton)
         view.addSubview(thumbnailButton)
         view.addSubview(scannerView)
+
+        addChild(displayController)
+        addChild(abilitiesController)
+        view.addSubview(displayController.view)
+        view.addSubview(abilitiesController.view)
+        displayController.view.backgroundColor = .clear
+        abilitiesController.view.backgroundColor = .clear
 
         saveButton.setTitle("저장", for: .normal)
         saveButton.setTitleColor(.black, for: .normal)
@@ -58,17 +74,24 @@ class ShootingViewController: UIViewController {
         thumbnailButton.translatesAutoresizingMaskIntoConstraints = false
         sutterButton.translatesAutoresizingMaskIntoConstraints = false
         saveButton.translatesAutoresizingMaskIntoConstraints = false
+        displayController.view.translatesAutoresizingMaskIntoConstraints = false
+        abilitiesController.view.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
+            displayController.view.topAnchor.constraint(equalTo: view.topAnchor),
+            displayController.view.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            displayController.view.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            displayController.view.bottomAnchor.constraint(equalTo: scannerView.topAnchor, constant: -5),
+
             scannerView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            scannerView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            scannerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+            scannerView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -50),
+            scannerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             scannerView.heightAnchor.constraint(equalTo: scannerView.widthAnchor, multiplier: 4/3),
 
             thumbnailButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            thumbnailButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -40),
-            thumbnailButton.widthAnchor.constraint(equalToConstant: 80),
-            thumbnailButton.heightAnchor.constraint(equalToConstant: 80),
+            thumbnailButton.centerYAnchor.constraint(equalTo: sutterButton.centerYAnchor, constant: 5),
+            thumbnailButton.widthAnchor.constraint(equalToConstant: 60),
+            thumbnailButton.heightAnchor.constraint(equalToConstant: 60),
 
             sutterButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             sutterButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -40),
@@ -79,15 +102,12 @@ class ShootingViewController: UIViewController {
             saveButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -40),
             saveButton.widthAnchor.constraint(equalToConstant: 80),
             saveButton.heightAnchor.constraint(equalToConstant: 80),
+
+            abilitiesController.view.topAnchor.constraint(equalTo: scannerView.bottomAnchor, constant: 5),
+            abilitiesController.view.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            abilitiesController.view.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            abilitiesController.view.bottomAnchor.constraint(equalTo: sutterButton.topAnchor, constant: -5),
         ])
-    }
-
-    private func setNavigationBar() {
-        self.navigationController?.navigationBar.backgroundColor = .black.withAlphaComponent(0.5)
-        self.navigationController?.navigationBar.tintColor = .white
-
-        self.navigationItem.leftBarButtonItem = .init(title: "취소")
-        self.navigationItem.rightBarButtonItem = .init(customView: toggleButton)
     }
 
     private func checkCameraPermissions() {
@@ -148,12 +168,18 @@ class ShootingViewController: UIViewController {
         self.navigationController?.pushViewController(previewViewController, animated: true)
     }
 
-    @objc private func tappedToggleButton(sender: ToggleButton) {
-        if sender.isMenual {
-            scannerView.autoDectector.isOn = false
-        } else {
-            scannerView.autoDectector.isOn = true
+    @objc private func handleAutoCapture(notification: Notification) {
+        guard let isAuto = notification.userInfo?[NotificationKey.isAutoCapture] as? Bool else {
+            return
         }
+        scannerView.autoDectector.isOn = isAuto
+    }
+
+    @objc private func handleCaptureSound(notification: Notification) {
+        guard let isMuted = notification.userInfo?[NotificationKey.isMuted] as? Bool else {
+            return
+        }
+        scannerView.muteCaptureSound(isMuted)
     }
 }
 
@@ -165,8 +191,8 @@ extension ShootingViewController: RepointViewControllerDelegate {
 
         var newImage: UIImage
 
-        if let cgImage = PerspectiveCorrection(image: image).correct(with: rectangleFeature) {
-            newImage = UIImage(cgImage: cgImage, scale: 1, orientation: .left)
+        if let ciImage = PerspectiveCorrection(image: image).correctionImage(through: rectangleFeature) {
+            newImage = UIImage(ciImage: ciImage, scale: 1, orientation: .left)
         } else {
             newImage = UIImage(ciImage: image, scale: 1, orientation: .left)
         }
@@ -193,8 +219,8 @@ extension ShootingViewController: AutoDectectorable {
 
             var image: UIImage
 
-            if let perspectiveCorrection = PerspectiveCorrection(image: result).correct() {
-                image = UIImage(cgImage: perspectiveCorrection, scale: 1, orientation: .right)
+            if let perspectiveCorrection = PerspectiveCorrection(image: result).correctImage() {
+                image = UIImage(ciImage: perspectiveCorrection, scale: 1, orientation: .right)
             } else {
                 image = UIImage(ciImage: result, scale: 1, orientation: .right)
             }

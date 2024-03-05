@@ -15,7 +15,7 @@ class PerspectiveCorrection: RectangleDetectable {
         self.originImage = image
     }
 
-    func correct() -> CGImage? {
+    func correctImage() -> CIImage? {
         guard let rectangleFeature = detectRectangle(in: originImage) else {
             return nil
         }
@@ -24,16 +24,10 @@ class PerspectiveCorrection: RectangleDetectable {
                                        topRight: rectangleFeature.topRight,
                                        bottomLeft: rectangleFeature.bottomLeft,
                                        bottomRight: rectangleFeature.bottomRight)
-        let correctionOutput = correctionImage(through: feature)
-        return convert(with: correctionOutput)
+        return correctionImage(through: feature)
     }
 
-    func correct(with feature: RectangleFeature) -> CGImage? {
-        let correctionOutput = correctionImage(through: feature)
-        return convert(with: correctionOutput)
-    }
-
-    private func correctionImage(through feature: RectangleFeature) -> CIImage? {
+    func correctionImage(through feature: RectangleFeature) -> CIImage? {
         let topLeft = CIVector(cgPoint: feature.topLeft)
         let topRight = CIVector(cgPoint: feature.topRight)
         let bottomLeft = CIVector(cgPoint: feature.bottomLeft)
@@ -52,14 +46,5 @@ class PerspectiveCorrection: RectangleDetectable {
         ])
 
         return perspectiveFilter.outputImage
-    }
-
-    private func convert(with image: CIImage?) -> CGImage? {
-        guard let image else {
-            return nil
-        }
-
-        let ciContext = CIContext(options: nil)
-        return ciContext.createCGImage(image, from: image.extent)
     }
 }

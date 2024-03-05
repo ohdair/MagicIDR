@@ -11,10 +11,10 @@ class ThumbnailButton: UIButton {
 
     private let countLabel = {
         let label = UILabel()
-        label.layer.cornerRadius = 15
+        label.layer.cornerRadius = 10
         label.layer.masksToBounds = true
         label.backgroundColor = .systemYellow
-        label.font = UIFont.systemFont(ofSize: 17.0, weight: .bold)
+        label.font = UIFont.systemFont(ofSize: 14.0, weight: .bold)
         label.textColor = .white
         label.textAlignment = .center
         return label
@@ -22,7 +22,9 @@ class ThumbnailButton: UIButton {
 
     private let thumbnailImageView = {
         let imageView = UIImageView()
-        imageView.backgroundColor = .main.withAlphaComponent(0.5)
+        imageView.contentMode = .scaleAspectFit
+        imageView.layer.cornerRadius = 8
+        imageView.backgroundColor = .white.withAlphaComponent(0.2)
         return imageView
     }()
 
@@ -54,8 +56,8 @@ class ThumbnailButton: UIButton {
             thumbnailImageView.trailingAnchor.constraint(equalTo: trailingAnchor),
             thumbnailImageView.bottomAnchor.constraint(equalTo: bottomAnchor),
 
-            countLabel.widthAnchor.constraint(equalToConstant: 30),
-            countLabel.heightAnchor.constraint(equalToConstant: 30),
+            countLabel.widthAnchor.constraint(equalToConstant: 20),
+            countLabel.heightAnchor.constraint(equalToConstant: 20),
             countLabel.centerXAnchor.constraint(equalTo: trailingAnchor),
             countLabel.centerYAnchor.constraint(equalTo: topAnchor)
         ])
@@ -63,6 +65,7 @@ class ThumbnailButton: UIButton {
 
     func setThumbnail(image: UIImage?, savedImagesCount count: Int) {
         countLabel.text = "\(count)"
+        thumbnailImageView.image = nil
         thumbnailImageView.image = image
     }
 }

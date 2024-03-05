@@ -15,6 +15,15 @@
 		F61BFD492B6CC8230052D077 /* RepointViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F61BFD482B6CC8230052D077 /* RepointViewController.swift */; };
 		F61BFD4B2B6CE2BD0052D077 /* Scanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = F61BFD4A2B6CE2BD0052D077 /* Scanner.swift */; };
 		F61BFD4D2B6CEAEB0052D077 /* ScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F61BFD4C2B6CEAEB0052D077 /* ScannerView.swift */; };
+		F68388F82B8DA0A200BDA5A6 /* CaptureSoundToggleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68388F72B8DA0A200BDA5A6 /* CaptureSoundToggleView.swift */; };
+		F68388FA2B8DC3CF00BDA5A6 /* AutoCaptureToggleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68388F92B8DC3CF00BDA5A6 /* AutoCaptureToggleView.swift */; };
+		F68388FC2B8DD43E00BDA5A6 /* AbilitiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68388FB2B8DD43E00BDA5A6 /* AbilitiesView.swift */; };
+		F68388FE2B8DE7D900BDA5A6 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68388FD2B8DE7D900BDA5A6 /* Notification.swift */; };
+		F68389002B8E0E7300BDA5A6 /* AutoCaptureDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68388FF2B8E0E7300BDA5A6 /* AutoCaptureDisplayView.swift */; };
+		F68389022B8E0FB900BDA5A6 /* StrokeText.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68389012B8E0FB900BDA5A6 /* StrokeText.swift */; };
+		F68389042B8E132D00BDA5A6 /* CaptureSoundDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68389032B8E132D00BDA5A6 /* CaptureSoundDisplayView.swift */; };
+		F68389062B8E146000BDA5A6 /* DisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68389052B8E146000BDA5A6 /* DisplayView.swift */; };
+		F68389082B9068CE00BDA5A6 /* ShareableImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68389072B9068CE00BDA5A6 /* ShareableImage.swift */; };
 		F68508F22B6F8A7600332DBA /* RectangleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68508F12B6F8A7600332DBA /* RectangleView.swift */; };
 		F699E8322B7B683C006D2237 /* ToggleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F699E8312B7B683C006D2237 /* ToggleButton.swift */; };
 		F699E8342B7B89EB006D2237 /* SutterButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F699E8332B7B89EB006D2237 /* SutterButton.swift */; };
@@ -45,6 +54,15 @@
 		F61BFD482B6CC8230052D077 /* RepointViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepointViewController.swift; sourceTree = "<group>"; };
 		F61BFD4A2B6CE2BD0052D077 /* Scanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scanner.swift; sourceTree = "<group>"; };
 		F61BFD4C2B6CEAEB0052D077 /* ScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerView.swift; sourceTree = "<group>"; };
+		F68388F72B8DA0A200BDA5A6 /* CaptureSoundToggleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureSoundToggleView.swift; sourceTree = "<group>"; };
+		F68388F92B8DC3CF00BDA5A6 /* AutoCaptureToggleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoCaptureToggleView.swift; sourceTree = "<group>"; };
+		F68388FB2B8DD43E00BDA5A6 /* AbilitiesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbilitiesView.swift; sourceTree = "<group>"; };
+		F68388FD2B8DE7D900BDA5A6 /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
+		F68388FF2B8E0E7300BDA5A6 /* AutoCaptureDisplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoCaptureDisplayView.swift; sourceTree = "<group>"; };
+		F68389012B8E0FB900BDA5A6 /* StrokeText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrokeText.swift; sourceTree = "<group>"; };
+		F68389032B8E132D00BDA5A6 /* CaptureSoundDisplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureSoundDisplayView.swift; sourceTree = "<group>"; };
+		F68389052B8E146000BDA5A6 /* DisplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayView.swift; sourceTree = "<group>"; };
+		F68389072B9068CE00BDA5A6 /* ShareableImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareableImage.swift; sourceTree = "<group>"; };
 		F68508F12B6F8A7600332DBA /* RectangleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RectangleView.swift; sourceTree = "<group>"; };
 		F699E8312B7B683C006D2237 /* ToggleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleButton.swift; sourceTree = "<group>"; };
 		F699E8332B7B89EB006D2237 /* SutterButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SutterButton.swift; sourceTree = "<group>"; };
@@ -120,6 +138,13 @@
 				F6E4E18A2B78AABB00781184 /* SegmentView.swift */,
 				F699E8312B7B683C006D2237 /* ToggleButton.swift */,
 				F699E8332B7B89EB006D2237 /* SutterButton.swift */,
+				F68388FB2B8DD43E00BDA5A6 /* AbilitiesView.swift */,
+				F68389052B8E146000BDA5A6 /* DisplayView.swift */,
+				F68388F72B8DA0A200BDA5A6 /* CaptureSoundToggleView.swift */,
+				F68389032B8E132D00BDA5A6 /* CaptureSoundDisplayView.swift */,
+				F68388F92B8DC3CF00BDA5A6 /* AutoCaptureToggleView.swift */,
+				F68388FF2B8E0E7300BDA5A6 /* AutoCaptureDisplayView.swift */,
+				F68389012B8E0FB900BDA5A6 /* StrokeText.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -136,6 +161,7 @@
 				F6E4E1972B79EB0200781184 /* DistanceMeasurable.swift */,
 				F6E4E1992B7A13C500781184 /* RectangleFeature.swift */,
 				F6E4E19B2B7B1C9F00781184 /* AutoDetector.swift */,
+				F68389072B9068CE00BDA5A6 /* ShareableImage.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -144,6 +170,7 @@
 			isa = PBXGroup;
 			children = (
 				F6E4E1942B79AB4000781184 /* CGPoint.swift */,
+				F68388FD2B8DE7D900BDA5A6 /* Notification.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -225,20 +252,29 @@
 				F6F48C2A2B707FD400D0ABB5 /* RectangleFeatureAdjustmetor.swift in Sources */,
 				F68508F22B6F8A7600332DBA /* RectangleView.swift in Sources */,
 				F61BFD352B6BA27A0052D077 /* AppDelegate.swift in Sources */,
+				F68388F82B8DA0A200BDA5A6 /* CaptureSoundToggleView.swift in Sources */,
 				F6E4E18F2B78F92600781184 /* Graph.swift in Sources */,
 				F6E4E1952B79AB4000781184 /* CGPoint.swift in Sources */,
 				F6DDEB2B2B720F0C0042074C /* ContentViewController.swift in Sources */,
 				F6E4E19A2B7A13C500781184 /* RectangleFeature.swift in Sources */,
 				F6E4E19C2B7B1C9F00781184 /* AutoDetector.swift in Sources */,
+				F68388FC2B8DD43E00BDA5A6 /* AbilitiesView.swift in Sources */,
+				F68388FA2B8DC3CF00BDA5A6 /* AutoCaptureToggleView.swift in Sources */,
 				F6F48C2F2B7099F500D0ABB5 /* RectangleDetectable.swift in Sources */,
 				F61BFD492B6CC8230052D077 /* RepointViewController.swift in Sources */,
 				F61BFD4D2B6CEAEB0052D077 /* ScannerView.swift in Sources */,
 				F6E4E18B2B78AABB00781184 /* SegmentView.swift in Sources */,
+				F68389022B8E0FB900BDA5A6 /* StrokeText.swift in Sources */,
+				F68389042B8E132D00BDA5A6 /* CaptureSoundDisplayView.swift in Sources */,
 				F6DDEB2D2B74D3C40042074C /* CornerView.swift in Sources */,
+				F68388FE2B8DE7D900BDA5A6 /* Notification.swift in Sources */,
 				F61BFD4B2B6CE2BD0052D077 /* Scanner.swift in Sources */,
+				F68389062B8E146000BDA5A6 /* DisplayView.swift in Sources */,
+				F68389082B9068CE00BDA5A6 /* ShareableImage.swift in Sources */,
 				F699E8342B7B89EB006D2237 /* SutterButton.swift in Sources */,
 				F6F48C332B70D7D400D0ABB5 /* ThumbnailButton.swift in Sources */,
 				F699E8322B7B683C006D2237 /* ToggleButton.swift in Sources */,
+				F68389002B8E0E7300BDA5A6 /* AutoCaptureDisplayView.swift in Sources */,
 				F6F48C372B71005D00D0ABB5 /* PreviewViewController.swift in Sources */,
 				F61BFD372B6BA27A0052D077 /* SceneDelegate.swift in Sources */,
 			);

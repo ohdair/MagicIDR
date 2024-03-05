@@ -47,6 +47,10 @@ class ScannerView: UIView {
     func scan() async -> CIImage? {
         await scanner.scan()
     }
+
+    func muteCaptureSound(_ bool: Bool) {
+        scanner.isMuted = bool
+    }
 }
 
 extension ScannerView: ScannerDelegate, RectangleDetectable {

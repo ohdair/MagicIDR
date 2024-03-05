@@ -34,23 +34,25 @@ class PreviewViewController: UIViewController {
         let image = UIImage(systemName: "trash", withConfiguration: imageConfig)
         var buttonConfig = UIButton.Configuration.plain()
         buttonConfig.image = image
-        buttonConfig.baseForegroundColor = .main
+        buttonConfig.baseForegroundColor = .white
         return UIButton(configuration: buttonConfig)
     }()
 
     private let counterclockwiseButton = {
-        let button = UIButton()
-        button.setTitle("반시계", for: .normal)
-        button.setTitleColor(.black, for: .normal)
-        return button
-    }()
-
-    private let cropButton = {
         let imageConfig = UIImage.SymbolConfiguration(pointSize: 17, weight: .bold)
-        let image = UIImage(systemName: "crop", withConfiguration: imageConfig)
+        let image = UIImage(systemName: "arrow.counterclockwise", withConfiguration: imageConfig)
         var buttonConfig = UIButton.Configuration.plain()
         buttonConfig.image = image
-        buttonConfig.baseForegroundColor = .main
+        buttonConfig.baseForegroundColor = .white
+        return UIButton(configuration: buttonConfig)
+    }()
+
+    private let exportButton = {
+        let imageConfig = UIImage.SymbolConfiguration(pointSize: 17, weight: .bold)
+        let image = UIImage(systemName: "square.and.arrow.up", withConfiguration: imageConfig)
+        var buttonConfig = UIButton.Configuration.plain()
+        buttonConfig.image = image
+        buttonConfig.baseForegroundColor = .white
         return UIButton(configuration: buttonConfig)
     }()
 
@@ -58,9 +60,9 @@ class PreviewViewController: UIViewController {
         let stackView = UIStackView()
         stackView.addArrangedSubview(deleteButton)
         stackView.addArrangedSubview(counterclockwiseButton)
-        stackView.addArrangedSubview(cropButton)
+        stackView.addArrangedSubview(exportButton)
         stackView.distribution = .fillEqually
-        stackView.backgroundColor = .black.withAlphaComponent(0.1)
+        stackView.backgroundColor = .white.withAlphaComponent(0.1)
         return stackView
     }()
 
@@ -74,6 +76,7 @@ class PreviewViewController: UIViewController {
 
         deleteButton.addTarget(self, action: #selector(deleteImage), for: .touchUpInside)
         counterclockwiseButton.addTarget(self, action: #selector(rotatingImage), for: .touchUpInside)
+        exportButton.addTarget(self, action: #selector(exportImage), for: .touchUpInside)
     }
 
     private func setPageViewController() {
@@ -89,7 +92,7 @@ class PreviewViewController: UIViewController {
     }
 
     private func setUI() {
-        view.backgroundColor = .white
+        view.backgroundColor = .systemBackground
         addChild(pageViewController)
         view.addSubview(pageViewController.view)
         view.addSubview(abilitiesStackView)
@@ -118,7 +121,7 @@ class PreviewViewController: UIViewController {
         let titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
 
         self.navigationController?.navigationBar.titleTextAttributes = titleTextAttributes
-        self.navigationController?.navigationBar.backgroundColor = UIColor.main
+        self.navigationController?.navigationBar.backgroundColor = .clear
         self.navigationController?.navigationBar.tintColor = .white
         self.navigationItem.leftBarButtonItem = backBarButtonItem
 
@@ -190,6 +193,19 @@ class PreviewViewController: UIViewController {
                                               direction: .forward,
                                               animated: false)
     }
+
+    @objc private func exportImage() {
+        guard let viewController =  self.pageViewController.viewControllers?.first,
+              let contentController = viewController as? ContentViewController,
+              let currentIndex = contentController.pageIndex,
+              let image = images.element(at: currentIndex) else {
+            return
+        }
+
+        let imageProvider = ShareableImageProvider(image: image, index: currentIndex)
+        let activityViewController = UIActivityViewController(activityItems : [imageProvider], applicationActivities: nil)
+        self.present(activityViewController, animated: true, completion: nil)
+    }
 }
 
 extension PreviewViewController: UIPageViewControllerDataSource, UIPageViewControllerDelegate {
@@ -255,8 +271,6 @@ fileprivate extension UIImage {
 
         if let ciImage {
             return UIImage(ciImage: ciImage, scale: 1, orientation: newOrientation)
-        } else if let cgImage {
-            return UIImage(cgImage: cgImage, scale: 1, orientation: newOrientation)
         } else {
             return nil
         }
